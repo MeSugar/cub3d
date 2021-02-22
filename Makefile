@@ -15,7 +15,7 @@ SRCS		=	main.c
 all : $(NAME)
 
 $(NAME) : $(SRCS)
-		@make -C $(LIBFT_PATH)
+		@make bonus -C $(LIBFT_PATH)
 		@$(CC) -o $(NAME) $(CFLAGS) $(SRCS) $(LIBFT) $(MINILIB) -framework OpenGL -framework AppKit
 
 clean :
