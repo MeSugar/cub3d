@@ -16,7 +16,7 @@ all : $(NAME)
 
 $(NAME) : $(SRCS)
 		@make bonus -C $(LIBFT_PATH)
-		@$(CC) -o $(NAME) $(CFLAGS) $(SRCS) $(LIBFT) $(MINILIB) -framework OpenGL -framework AppKit
+		@$(CC) -o $(NAME) $(CFLAGS) $(SRCS) $(LIBFT) $(MINILIB) -lmlx -lm -framework OpenGL -framework AppKit
 
 clean :
 		@make -C $(LIBFT_PATH) clean
