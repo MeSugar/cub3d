@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "cub3d.h"
 
 static char	*ft_strcpy(char *dst, const char *src)
 {
