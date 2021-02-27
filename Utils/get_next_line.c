@@ -51,7 +51,7 @@ static int	next_line_checker(char **next_line, char **line)
 			return (1);
 	}
 	else
-		*line = (char*)ft_calloc(1);
+		*line = (char*)ft_calloc(1, sizeof(char *));
 	return (0);
 }
 

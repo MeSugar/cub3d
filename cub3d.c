@@ -4,10 +4,11 @@ int main(int ac, char **av)
 {
     t_win *window_config;
 
-    if (!(window_config = window_config_init(av[1]))
-    || !map_init(window_config)
-    || !config_parser(window_config))
-        return (0);
+    if (ac == 2)
+        if (!(window_config = window_config_init(av[1]))
+        || !map_init(window_config)
+        || !config_parser(window_config))
+            return (0);
 
 
 

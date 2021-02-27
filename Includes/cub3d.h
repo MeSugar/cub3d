@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define BUFFER_SIZE 5000
+# define BUFFER_SIZE 4096
 # include <fcntl.h>
 # include "mlx.h"
 # include "libft.h"
@@ -12,22 +12,22 @@ typedef struct      s_map
     int             map_exists;
 }                   t_map;
 
-typedef struct      s_mapp
-{
-    void            *content;
-    struct s_mapp   *next;
-}                   t_mapp;
+// typedef struct      s_list
+// {
+//     void            *content;
+//     struct s_mapp   *next;
+// }                   t_mapp;
 
 typedef struct  s_win
 {
     void    *mlx_ptr;
     void    *win_ptr;
-    char    *config_file;
+    const char    *config_file;
     int     error_type;
     int     window_width;
     int     window_height;
     t_map   *map;
-    t_map   *mapp;
+    t_list   *mapp;
 }               t_win;
 
 // Inits

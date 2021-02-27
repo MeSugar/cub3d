@@ -21,7 +21,7 @@ int map_init(t_win *window_config)
     if (!(window_config->map = calloc(1, sizeof(t_map))))
         return (0);
     window_config->map->map_exists = 0;
-    if (!(window_config->mapp = calloc(1, sizeof(t_mapp))))
+    if (!(window_config->mapp = calloc(1, sizeof(t_list))))
         return (0);
     window_config->map->map_exists = 0;
     return (1);

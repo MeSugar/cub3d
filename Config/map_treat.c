@@ -1,23 +1,24 @@
 #include "cub3d.h"
 
-static char **map_save(t_mapp *mapp, int size)
+int map_save(t_win *window_config, int size)
 {
     char **map;
-    t_mapp *tmp;
+    t_list *tmp;
     int i;
 
     if (!(map = ft_calloc(size + 1, sizeof(char *))))
         return (put_error_msg("Error: Malloc error during saving map"));
-    tmp = mapp;
-    if (mapp->next)
-        free(mapp);
+    tmp = window_config->mapp;
+    if (window_config->mapp->next)
+        free(window_config->mapp);
     i = -1;
     while (tmp)
     {
         map[++i] = tmp->content;
         tmp = tmp->next; 
     }
-    return (map);
+    window_config->map->map = map;
+    return (1);
 }
 
 int map_treat(t_win *window_config, char *line, int i)
@@ -25,14 +26,13 @@ int map_treat(t_win *window_config, char *line, int i)
     window_config->map->map_exists = 1;
     while (line[i])
     {
-        if (line[i] != '0' || line[i] != '1' || line[i] != '2'
-        || line[i] != 'N' || line[i] != 'E' || line[i] != 'S' 
-        || line[i] != 'W' || line[i] != ' ')
-            return (put_error_msg("Error: Invalid map element"));
+        if (line[i] != '0' || line[i] != '1' || line[i] != '2' || line[i] != 'N' || line[i] != 'E' || line[i] != 'S' || line[i] != 'W' || line[i] != ' ')
+			return (put_error_msg("Error: Invalid map element\n"));
         i++;
     }
-    ft_lstadd_back(window_config->mapp, ft_lstnew(line));
-    if (!(window_config->map->map = map_save(window_config->mapp, ft_lstsize(window_config->mapp))))
+    ft_lstadd_back(&window_config->mapp, ft_lstnew(line));
+    if (!map_save(window_config, ft_lstsize(window_config->mapp)))
         return (0);
+    ft_putendl_fd(*window_config->map->map, 1);
     return (1);
 }
