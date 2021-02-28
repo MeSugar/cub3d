@@ -26,9 +26,10 @@ int map_treat(t_win *window_config, char *line, int i)
     window_config->map->map_exists = 1;
     while (line[i])
     {
-        if (line[i] != '0' || line[i] != '1' || line[i] != '2' || line[i] != 'N' || line[i] != 'E' || line[i] != 'S' || line[i] != 'W' || line[i] != ' ')
-			return (put_error_msg("Error: Invalid map element\n"));
-        i++;
+        if (line[i] == '0' || line[i] == '1' || line[i] == '2' || line[i] == 'N' || line[i] == 'E' || line[i] == 'S' || line[i] == 'W' || line[i] == ' ')
+            i++;
+        else
+            return (put_error_msg("Error: Invalid map element\n"));
     }
     ft_lstadd_back(&window_config->mapp, ft_lstnew(line));
     if (!map_save(window_config, ft_lstsize(window_config->mapp)))
