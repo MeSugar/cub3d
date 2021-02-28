@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static int  line_treat(t_win *window_config, char *line)
+static int  line_treat(t_win *window_config, char *line, int rtn)
 {
     int i;
     int error;
@@ -13,6 +13,8 @@ static int  line_treat(t_win *window_config, char *line)
         error = map_treat(window_config, line, i);
     else if (line[i] && line[i] == 'R' && line[i + 1] == ' ')
         error = resolution_treat(window_config, line, i);
+    else if (line[i] == '\0' && rtn)
+        return (error);
     else
         return (error = put_error_msg("Error: Invalid configuration file\n"));
     return (error);
@@ -29,7 +31,7 @@ int config_parser(t_win *window_config)
         return (put_error_msg("Error: Can't open config file\n"));
     while ((rtn = get_next_line(fd, &line)) != -1)
     {
-        if (!line_treat(window_config, line))
+        if (!line_treat(window_config, line, rtn))
             return (0);
         if (rtn == 0)
             break;
