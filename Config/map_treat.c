@@ -9,8 +9,8 @@ int map_save(t_win *window_config, int size)
     if (!(map = ft_calloc(size + 1, sizeof(char *))))
         return (put_error_msg("Error: Malloc error during saving map"));
     tmp = window_config->mapp;
-    if (window_config->mapp->next)
-        free(window_config->mapp);
+    if (window_config->map->map)
+        free(window_config->map->map);
     i = -1;
     while (tmp)
     {
