@@ -5,9 +5,7 @@ int map_save(t_win *window_config, int size)
     char **map;
     t_list *tmp;
     int i;
-    int p;
 
-    p = 0;
     if (!(map = ft_calloc(size + 1, sizeof(char *))))
         return (put_error_msg("Error: Malloc error during saving map"));
     tmp = window_config->mapp;
@@ -19,12 +17,8 @@ int map_save(t_win *window_config, int size)
         map[++i] = tmp->content;
         tmp = tmp->next; 
     }
+    map[i + 1] = 0;
     window_config->map->map = map;
-    while (window_config->map->map[p])
-    {
-        ft_putendl_fd(*window_config->map->map, 1);
-        p++;
-    }
     return (1);
 }
 

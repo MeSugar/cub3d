@@ -22,19 +22,17 @@ int config_parser(t_win *window_config)
     line = 0;
     if (!(fd = open(window_config->config_file, O_RDONLY)))
         return (put_error_msg("Error: Can't open config file\n"));
-    while ((rtn = get_next_line(fd, &line)))
+    while ((rtn = get_next_line(fd, &line)) != -1)
     {
-        if (rtn == -1)
-            return (put_error_msg("Error: Can't read config file\n"));
         if (!line_treat(window_config, line))
             return (0);
-
-		// ft_lstadd_back(window_config->map, ft_lstnew(line));
+        if (rtn == 0)
+            break;
     }
+    // fd = -1;
+    // while (window_config->map->map[++fd])
+    //     ft_putendl_fd(window_config->map->map[fd], 1);
+    if (rtn == -1)
+            return (put_error_msg("Error: Can't read config file\n"));
     return (1);
-    // ft_lstadd_back(window_config->map, ft_lstnew(line));
-
-
-	// make_map(&head, ft_lstsize(head));
-
 }
