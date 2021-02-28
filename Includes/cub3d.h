@@ -42,5 +42,6 @@ int     config_parser(t_win *window_config);
 int     get_next_line(int fd, char **line);
 void    whitespace_skip(int *i, char *line);
 int     map_treat(t_win *window_config, char *line, int i);
+int     resolution_treat(t_win *window_config, char *line, int i);
 
 #endif
