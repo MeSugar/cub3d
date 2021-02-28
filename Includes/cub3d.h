@@ -5,6 +5,7 @@
 # include <fcntl.h>
 # include "mlx.h"
 # include "libft.h"
+# include <stdio.h>
 
 typedef struct      s_map
 {

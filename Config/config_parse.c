@@ -13,6 +13,8 @@ static int  line_treat(t_win *window_config, char *line)
         error = map_treat(window_config, line, i);
     else if (line[i] && line[i] == 'R' && line[i + 1] == ' ')
         error = resolution_treat(window_config, line, i);
+    else
+        return (error = put_error_msg("Error: Invalid configuration file\n"));
     return (error);
 }
 
@@ -33,6 +35,8 @@ int config_parser(t_win *window_config)
             break;
     }
     fd = -1;
+    printf("%d\n", window_config->window_width);
+    printf("%d\n", window_config->window_height);
     while (window_config->map->map[++fd])
         ft_putendl_fd(window_config->map->map[fd], 1);
     if (rtn == -1)
