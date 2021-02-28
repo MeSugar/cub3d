@@ -27,7 +27,7 @@ int map_treat(t_win *window_config, char *line, int i)
     window_config->map->map_exists = 1;
     while (line[i])
     {
-        if (line[i] == '0' || line[i] == '1' || line[i] == '2' || line[i] == 'N' || line[i] == 'E' || line[i] == 'S' || line[i] == 'W' || line[i] == ' ')
+        if ((line[i] == '0' || line[i] == '1' || line[i] == '2' || line[i] == 'N' || line[i] == 'E' || line[i] == 'S' || line[i] == 'W' || line[i] == ' ') && ft_strchr(line, '1'))
             i++;
         else
             return (put_error_msg("Error: Invalid map element\n"));
