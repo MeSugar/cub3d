@@ -6,14 +6,14 @@ static int  resoluiton_fomat_check(char *line, int i)
         return (put_error_msg("Error: Invalid resolution string\n"));
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (line [i] && line[i] != ' ')
+    if (line[i] && line[i] != ' ')
         return (put_error_msg("Error: Invalid resolution string\n"));
     whitespace_skip(&i, line);
     if (line[i] && !ft_isdigit(line[i]))
         return (put_error_msg("Error: Invalid resolution string\n"));
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (line [i] && line[i] != ' ')
+    if (line[i] && line[i] != ' ')
         return (put_error_msg("Error: Invalid resolution string\n"));
     whitespace_skip(&i, line);
     if (line[i])
@@ -21,7 +21,7 @@ static int  resoluiton_fomat_check(char *line, int i)
     return (1);
 }
 
-static void resolution_store(t_win *window_config, char *line, int i)
+static void store_resolution(t_win *window_config, char *line, int i)
 {
     i--;
     while (ft_isdigit(line[++i]))
@@ -40,12 +40,12 @@ int     resolution_treat(t_win *window_config, char *line, int i)
 {
     if (window_config->window_width || window_config->window_height)
         return (put_error_msg("Error: Resolution specified twice\n"));
-    whitespace_skip(&i, line);
+    // whitespace_skip(&i, line);
     if (line [i] && line[i] == 'R')
         i++;
     whitespace_skip(&i, line);
     if (!resoluiton_fomat_check(line, i))
         return (0);
-    resolution_store(window_config, line, i);
+    store_resolution(window_config, line, i);
     return (1);
 }

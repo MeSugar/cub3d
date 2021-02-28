@@ -13,6 +13,8 @@ static int  line_treat(t_win *window_config, char *line, int rtn)
         error = map_treat(window_config, line, i);
     else if (line[i] && line[i] == 'R' && line[i + 1] == ' ')
         error = resolution_treat(window_config, line, i);
+    else if (line[i] && (line[i] == 'C' || line[i] == 'F') && line[i + 1] == ' ')
+        error = color_treat(window_config, line, i);
     else if (line[i] == '\0' && rtn)
         return (error);
     else

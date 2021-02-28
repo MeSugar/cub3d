@@ -13,22 +13,17 @@ typedef struct      s_map
     int             map_exists;
 }                   t_map;
 
-// typedef struct      s_list
-// {
-//     void            *content;
-//     struct s_mapp   *next;
-// }                   t_mapp;
-
 typedef struct  s_win
 {
     void    *mlx_ptr;
     void    *win_ptr;
     const char    *config_file;
-    int     error_type;
     int     window_width;
     int     window_height;
+    int     floor_color;
+    int     ceiling_color;
     t_map   *map;
-    t_list   *mapp;
+    t_list  *mapp;
 }               t_win;
 
 // Inits
@@ -44,5 +39,6 @@ int     get_next_line(int fd, char **line);
 void    whitespace_skip(int *i, char *line);
 int     map_treat(t_win *window_config, char *line, int i);
 int     resolution_treat(t_win *window_config, char *line, int i);
+int     color_treat(t_win *window_config, char *line, int i);
 
 #endif
