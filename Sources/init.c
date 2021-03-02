@@ -30,4 +30,5 @@ int window_init(t_win *window_config)
     if (!(window_config->win_ptr = mlx_new_window(window_config->mlx_ptr,
     window_config->window_width, window_config->window_height, "cub3D")))
         return (0);
+    return (1);
 }
