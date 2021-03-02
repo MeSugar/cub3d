@@ -7,6 +7,15 @@
 # include "libft.h"
 # include <stdio.h>
 
+typedef struct s_image
+{
+    void        *img_ptr;
+    char        *addr;
+    int         bpp;
+    int         line_length;
+    int         endian;
+}              t_image;
+
 typedef struct      s_map
 {
     char            **map;
@@ -24,11 +33,13 @@ typedef struct  s_win
     int     ceiling_color;
     t_map   *map;
     t_list  *mapp;
+    t_image *image;
 }               t_win;
 
 // Inits
 t_win   *window_config_init(const char *config_file);
 int     map_init(t_win *window_config);
+int     window_init(t_win *window_config);
 
 // Error management
 int put_error_msg(char *error_message);
@@ -40,5 +51,8 @@ void    whitespace_skip(int *i, char *line);
 int     map_treat(t_win *window_config, char *line, int i);
 int     resolution_treat(t_win *window_config, char *line, int i);
 int     color_treat(t_win *window_config, char *line, int i);
+
+// Draw
+int draw_image(t_win *window_config);
 
 #endif

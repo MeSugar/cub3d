@@ -19,6 +19,7 @@ int main(int ac, char **av)
         if (!(window_config = window_config_init(av[1]))
         || !map_init(window_config)
         || !config_parser(window_config)
+        || !window_init(window_config)
         || !draw_image(window_config))
             return (0);
 

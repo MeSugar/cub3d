@@ -11,10 +11,6 @@ t_win *window_config_init(const char *config_file)
 	new_config->window_height = 0;
     new_config->ceiling_color = 0;
     new_config->floor_color = 0;
-    if (!(new_config->mlx_ptr = mlx_init()))
-        return (0);
-    if (!(new_config->mlx_ptr = mlx_new_window(new_config->mlx_ptr, new_config->window_width, new_config->window_height, "cub3D")))
-        return (0);
     return (new_config);
 }
 
@@ -25,4 +21,13 @@ int map_init(t_win *window_config)
     window_config->map->map_exists = 0;
     window_config->mapp = 0;
     return (1);
+}
+
+int window_init(t_win *window_config)
+{
+    if (!(window_config->mlx_ptr = mlx_init()))
+        return (0);
+    if (!(window_config->win_ptr = mlx_new_window(window_config->mlx_ptr,
+    window_config->window_width, window_config->window_height, "cub3D")))
+        return (0);
 }
