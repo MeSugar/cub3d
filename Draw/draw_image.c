@@ -68,6 +68,8 @@ static void draw_map(t_win *window_config)
     }
 }
 
+//static void draw_player(t_win *window_config) 
+
 int draw_image(t_win *window_config)
 {
     if (!(window_config->image = calloc(1, sizeof(t_image))))
