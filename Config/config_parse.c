@@ -7,7 +7,7 @@ static int  line_treat(t_win *window_config, char *line, int rtn)
 
     i = 0;
     error = 1;
-    if (!window_config->map->map_exists)
+    if (!window_config->map->map_exists && line[i] != '\0')
         whitespace_skip(&i, line);
     if (line[i] && (line[i] == '1' || window_config->map->map_exists))
         error = map_treat(window_config, line, i);
@@ -15,7 +15,7 @@ static int  line_treat(t_win *window_config, char *line, int rtn)
         error = resolution_treat(window_config, line, i);
     else if (line[i] && (line[i] == 'C' || line[i] == 'F') && line[i + 1] == ' ')
         error = color_treat(window_config, line, i);
-    else if (line[i] == '\0' && rtn)
+    else if (line[i] == '\0' && rtn && !window_config->map->map_exists)
         return (error);
     else
         return (error = put_error_msg("Error: Invalid configuration file\n"));
