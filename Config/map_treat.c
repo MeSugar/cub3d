@@ -22,13 +22,13 @@ static int map_save(t_win *window_config, int size)
     return (1);
 }
 
-static int map_format_check(char **map)
-{
-    int w;
-    int h;
+// static int map_format_check(char **map)
+// {
+//     int w;
+//     int h;
 
-    w = 0;
-    h = 0;
+//     w = 0;
+//     h = 0;
     // while (map[h])
     // {
     //     w = 0;
@@ -40,19 +40,19 @@ static int map_format_check(char **map)
     //     }
         
     // }
-    while (1)
-    {
+    // while (1)
+    // {
         
-    }
+    // }
 
-}
+// }
 
 int map_treat(t_win *window_config, char *line, int i)
 {
     window_config->map->map_exists = 1;
     while (line[i])
     {
-        if ((line[i] == '0' || line[i] == '1' || line[i] == '2' || line[i] == 'N' || line[i] == 'E' || line[i] == 'S' || line[i] == 'W' || line[i] == ' ') && ft_strchr(line, '1'))
+        if ((line[i] == '0' || line[i] == '1' || line[i] == '2' || line[i] == 'N' || line[i] == 'E' || line[i] == 'S' || line[i] == 'W' || line[i] == ' '))
             i++;
         else
             return (put_error_msg("Error: Invalid map element\n"));
@@ -60,7 +60,7 @@ int map_treat(t_win *window_config, char *line, int i)
     ft_lstadd_back(&window_config->mapp, ft_lstnew(line));
     if (!map_save(window_config, ft_lstsize(window_config->mapp)))
         return (0);
-    if (!map_fomat_check(window_config->map->map))
-        return (0);
+    // if (!map_fomat_check(window_config->map->map))
+    //     return (0);
     return (1);
 }
