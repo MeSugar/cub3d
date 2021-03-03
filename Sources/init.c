@@ -19,7 +19,19 @@ int map_init(t_win *window_config)
     if (!(window_config->map = calloc(1, sizeof(t_map))))
         return (0);
     window_config->map->map_exists = 0;
+    window_config->map->width = 0;
+    window_config->map->height = 0;
     window_config->mapp = 0;
+    return (1);
+}
+
+int player_init(t_win *window_config)
+{
+    if (!(window_config->player = calloc(1, sizeof(t_player))))
+        return (0);
+    window_config->player->x = 0;
+    window_config->player->y = 0;
+    window_config->player->players_number = 0;
     return (1);
 }
 

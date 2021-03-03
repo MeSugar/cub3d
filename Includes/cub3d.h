@@ -19,8 +19,17 @@ typedef struct s_image
 typedef struct      s_map
 {
     char            **map;
+    int             width;
+    int             height;
     int             map_exists;
 }                   t_map;
+
+typedef struct      s_player
+{
+    int             x;
+    int             y;
+    int             players_number;
+}                   t_player;
 
 typedef struct  s_win
 {
@@ -32,6 +41,7 @@ typedef struct  s_win
     int     floor_color;
     int     ceiling_color;
     t_map   *map;
+    t_player *player;
     t_list  *mapp;
     t_image *image;
 }               t_win;
@@ -39,6 +49,7 @@ typedef struct  s_win
 // Inits
 t_win   *window_config_init(const char *config_file);
 int     map_init(t_win *window_config);
+int     player_init(t_win *window_config);
 int     window_init(t_win *window_config);
 
 // Error management

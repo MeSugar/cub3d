@@ -22,13 +22,17 @@ static int map_save(t_win *window_config, int size)
     return (1);
 }
 
-// static int map_format_check(char **map)
-// {
-//     int w;
-//     int h;
+static int map_format_check(char **map, t_player *player)
+{
+    int w;
+    int h;
+    int tmp;
 
-//     w = 0;
-//     h = 0;
+    w = player->x++;
+    h = player->y;
+
+    if (!player->x || !player->y || player->players_number != 1)
+        return (put_error_msg("Error: Wrong players number\n"));
     // while (map[h])
     // {
     //     w = 0;
@@ -42,25 +46,46 @@ static int map_save(t_win *window_config, int size)
     // }
     // while (1)
     // {
-        
+    //     while(w > -1)
+    //     {
+    //         if (map[h][w] == '1')
+    //             while (map[h])
+    //             {
+    //                 if (map[h][w] == '1')
+    //                     h++;
+                    
+    //             }
+    //         else if (map[h][w] == '0' || map[h][w] == '2')
+    //             w--;
+    //         else
+    //             return (put_error_msg("Error: The map isn't enclosed\n"));
+    //     }  
     // }
 
-// }
+}
 
 int map_treat(t_win *window_config, char *line, int i)
 {
+    window_config->map->height++;
     window_config->map->map_exists = 1;
     while (line[i])
     {
-        if ((line[i] == '0' || line[i] == '1' || line[i] == '2' || line[i] == 'N' || line[i] == 'E' || line[i] == 'S' || line[i] == 'W' || line[i] == ' '))
+        if ((line[i] == '0' || line[i] == '1' || line[i] == '2' || line[i] == ' '))
             i++;
+        else if ((line[i] == 'N' || line[i] == 'E' || line[i] == 'S' || line[i] == 'W'))
+        {
+            window_config->player->x = i;
+            window_config->player->y = window_config->map->height;
+            window_config->player->players_number++;
+            i++;
+        }
         else
             return (put_error_msg("Error: Invalid map element\n"));
     }
     ft_lstadd_back(&window_config->mapp, ft_lstnew(line));
     if (!map_save(window_config, ft_lstsize(window_config->mapp)))
         return (0);
-    // if (!map_fomat_check(window_config->map->map))
-    //     return (0);
+    if (!map_fomat_check(window_config->map->map, window_config->player))
+        return (0);
     return (1);
 }
