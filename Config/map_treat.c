@@ -14,8 +14,9 @@ static int map_save(t_win *window_config, int size)
     i = -1;
     while (tmp)
     {
-        map[++i] = tmp->content;
-        tmp = tmp->next; 
+        map[++i] = ft_calloc(window_config->map->width + 1, sizeof(char));
+        ft_strlcpy(map[i], tmp->content, ft_strlen(tmp->content) + 1);
+        tmp = tmp->next;
     }
     map[i + 1] = 0;
     window_config->map->map = map;
@@ -45,6 +46,10 @@ int map_treat(t_win *window_config, char *line, int i)
         else
             return (put_error_msg("Error: Invalid map element\n"));
     }
+    if (!window_config->map->width)
+        window_config->map->width = i;
+    if (window_config->map->width && window_config->map->width < i)
+        window_config->map->width = i;
     ft_lstadd_back(&window_config->mapp, ft_lstnew(line));
     if (!map_save(window_config, ft_lstsize(window_config->mapp)))
         return (0);
