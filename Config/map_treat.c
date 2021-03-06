@@ -22,47 +22,10 @@ static int map_save(t_win *window_config, int size)
     return (1);
 }
 
-static int map_format_check(char **map, t_player *player)
-{
-    int w;
-    int h;
-    int tmp;
-
-    w = player->x++;
-    h = player->y;
-
-    if (!player->x || !player->y || player->players_number != 1)
-        return (put_error_msg("Error: Wrong players number\n"));
-    // while (map[h])
-    // {
-    //     w = 0;
-    //     whitespace_skip(&w, map[h][w]);
-    //     while (map[h][w])
-    //     {
-    //         if ((map[h][w] != '1' && map[h][w] != ' ' && h == 0) || (map[h][w] != '1' && map[h][w] != ' ' && map[h + 1] == 0))
-    //             return (put_error_msg("Error: The map isn't enclosed\n"));
-    //     }
-        
-    // }
-    // while (1)
-    // {
-    //     while(w > -1)
-    //     {
-    //         if (map[h][w] == '1')
-    //             while (map[h])
-    //             {
-    //                 if (map[h][w] == '1')
-    //                     h++;
-                    
-    //             }
-    //         else if (map[h][w] == '0' || map[h][w] == '2')
-    //             w--;
-    //         else
-    //             return (put_error_msg("Error: The map isn't enclosed\n"));
-    //     }  
-    // }
-
-}
+// static int map_format_check(char **map, t_player *player)
+// {
+   
+// }
 
 int map_treat(t_win *window_config, char *line, int i)
 {
@@ -85,7 +48,7 @@ int map_treat(t_win *window_config, char *line, int i)
     ft_lstadd_back(&window_config->mapp, ft_lstnew(line));
     if (!map_save(window_config, ft_lstsize(window_config->mapp)))
         return (0);
-    if (!map_fomat_check(window_config->map->map, window_config->player))
-        return (0);
+    // if (!map_fomat_check(window_config->map->map, window_config->player))
+    //     return (0);
     return (1);
 }
