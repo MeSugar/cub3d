@@ -7,8 +7,7 @@ static int  line_treat(t_win *window_config, char *line, int rtn)
 
     i = 0;
     error = 1;
-    if (!window_config->map->map_exists && line[i] != '\0')
-        whitespace_skip(&i, line);
+    whitespace_skip(&i, line);
     if (line[i] && (line[i] == '1' || window_config->map->map_exists))
         error = map_treat(window_config, line, i);
     else if (line[i] && line[i] == 'R' && line[i + 1] == ' ')
@@ -20,6 +19,34 @@ static int  line_treat(t_win *window_config, char *line, int rtn)
     else
         return (error = put_error_msg("Error: Invalid configuration file\n"));
     return (error);
+}
+
+static int map_format_check(char **map, t_win *window_config)
+{
+    int h;
+    int w;
+    int begin;
+
+    h = -1;
+    while(map[++h])
+    {
+        w = 0;
+        whitespace_skip(&w, map[h]);
+        begin = w;
+        while (map[h][w])
+        {
+            if ((h == 0 && map[h][w] != '1') || (h == window_config->map->height - 1 && map[h][w] != '1'))
+                return (put_error_msg("Error: The map isn't enclosed\n"));
+            // if ((h > 0 && map[h - 1][w] == ' ' && map[h][w] != '1') || (h < window_config->map->height - 1 && map[h + 1][w] == ' ' && map[h][w] != '1'))
+            //     return (put_error_msg("Error: The map isn't enclosed\n"));
+            if (begin - w  == 0 && map[h][w] != '1')
+                return (put_error_msg("Error: The map isn't enclosed\n"));
+            if ((map[h][w + 1] == '\0' && map[h][w] != '1') || (w == window_config->map->width && map[h][w] != '1'))
+                return (put_error_msg("Error: The map isn't enclosed\n"));
+            w++;
+        }
+    }
+    return (1);
 }
 
 int config_parser(t_win *window_config)
@@ -38,6 +65,8 @@ int config_parser(t_win *window_config)
         if (rtn == 0)
             break;
     }
+    if (!map_format_check(window_config->map->map, window_config))
+        return (0);
     fd = -1;
     printf("%d\n", window_config->window_width);
     printf("%d\n", window_config->window_height);
