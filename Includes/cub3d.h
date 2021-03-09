@@ -77,7 +77,7 @@ int draw_image(t_win *window_config);
 
 // Keys
 int treat_keys(int keycode, t_win *window_config);
-int close_window(int keycode, t_win *window_config);
+int close_window(t_win *window_config);
 void move(t_win *window_config);
 
 #endif
