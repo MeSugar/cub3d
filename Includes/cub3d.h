@@ -2,6 +2,15 @@
 # define CUB3D_H
 
 # define BUFFER_SIZE 4096
+
+# define ESC 53
+# define W 13
+# define S 1
+# define A 0
+# define D 2
+# define TURN_LEFT 123
+# define TURN_RIGHT 124
+
 # include <fcntl.h>
 # include "mlx.h"
 # include "libft.h"
@@ -65,5 +74,10 @@ int     color_treat(t_win *window_config, char *line, int i);
 
 // Draw
 int draw_image(t_win *window_config);
+
+// Keys
+int treat_keys(int keycode, t_win *window_config);
+int close_window(int keycode, t_win *window_config);
+void move(t_win *window_config);
 
 #endif
