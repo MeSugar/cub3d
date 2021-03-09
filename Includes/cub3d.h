@@ -26,8 +26,8 @@ typedef struct      s_map
 
 typedef struct      s_player
 {
-    int             x;
-    int             y;
+    int             px;
+    int             py;
     int             players_number;
 }                   t_player;
 

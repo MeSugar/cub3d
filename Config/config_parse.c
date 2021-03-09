@@ -48,7 +48,6 @@ static int map_format_check(char **map, t_win *window_config)
             if (begin - w  == 0 && map[h][w] != '1')
                 return (put_error_msg("Error: The map isn't enclosed\n"));
             if (map[h][w + 1] == '\0' && map[h][w] != '1' && map[h][w] != ' ')
-            // || (w == window_config->map->width && map[h][w] != '1' && map[h][w] != ' '))
                 return (put_error_msg("Error: The map isn't enclosed\n"));
             w++;
         }

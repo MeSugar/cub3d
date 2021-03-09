@@ -29,8 +29,8 @@ int player_init(t_win *window_config)
 {
     if (!(window_config->player = calloc(1, sizeof(t_player))))
         return (0);
-    window_config->player->x = 0;
-    window_config->player->y = 0;
+    window_config->player->px = 0;
+    window_config->player->py = 0;
     window_config->player->players_number = 0;
     return (1);
 }

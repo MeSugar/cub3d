@@ -68,7 +68,26 @@ static void draw_map(t_win *window_config)
     }
 }
 
-//static void draw_player(t_win *window_config) 
+static void draw_player(t_win *window_config, t_player *player)
+{
+    int w;
+    int h;
+    int plX;
+    int plY;
+
+    w = 0;
+    h = 0;
+    while (h < 15)
+    {
+        w = 0;
+        while (w < 15)
+        {
+            pixel_put(window_config->image, player->px + w + 200, player->py + h + 200, 0x000000FF);
+                w++;
+        }
+        h++;
+    }
+}
 
 int draw_image(t_win *window_config)
 {
@@ -80,6 +99,7 @@ int draw_image(t_win *window_config)
     window_config->image->addr = mlx_get_data_addr(window_config->image->img_ptr,
     &window_config->image->bpp, &window_config->image->line_length, &window_config->image->endian);
     draw_map(window_config);
+    draw_player(window_config, window_config->player);
     mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
     mlx_loop(window_config->mlx_ptr);
     return (1);
