@@ -14,6 +14,7 @@
 # include <fcntl.h>
 # include "mlx.h"
 # include "libft.h"
+# include <math.h>
 # include <stdio.h>
 
 typedef struct s_image
@@ -35,8 +36,8 @@ typedef struct      s_map
 
 typedef struct      s_player
 {
-    int             px;
-    int             py;
+    double             px;
+    double             py;
     int             players_number;
 }                   t_player;
 
@@ -77,7 +78,7 @@ int draw_image(t_win *window_config);
 
 // Keys
 int treat_keys(int keycode, t_win *window_config);
-int close_window(t_win *window_config);
+void close_window(t_win *window_config);
 void move(t_win *window_config);
 
 #endif
