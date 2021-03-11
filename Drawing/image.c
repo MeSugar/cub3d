@@ -99,8 +99,5 @@ int draw_image(t_win *window_config)
     draw_map(window_config);
     draw_player(window_config, window_config->player);
     mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
-    mlx_hook(window_config->win_ptr, 2, 1L<<0, treat_keys, window_config);
-    mlx_loop_hook(window_config->mlx_ptr, treat_keys, window_config);
-    mlx_loop(window_config->mlx_ptr);
     return (1);
 }

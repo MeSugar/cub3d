@@ -14,7 +14,7 @@ t_win *window_config_init(const char *config_file)
     return (new_config);
 }
 
-int map_init(t_win *window_config)
+int map_player_keys_init(t_win *window_config)
 {
     if (!(window_config->map = calloc(1, sizeof(t_map))))
         return (0);
@@ -22,16 +22,19 @@ int map_init(t_win *window_config)
     window_config->map->width = 0;
     window_config->map->height = 0;
     window_config->mapp = 0;
-    return (1);
-}
-
-int player_init(t_win *window_config)
-{
     if (!(window_config->player = calloc(1, sizeof(t_player))))
         return (0);
     window_config->player->px = 0;
     window_config->player->py = 0;
     window_config->player->players_number = 0;
+    if (!(window_config->keys = calloc(1, sizeof(t_keys))))
+        return (0);
+    window_config->keys->forward = 0;
+    window_config->keys->backward = 0;
+    window_config->keys->left = 0;
+    window_config->keys->right = 0;
+    window_config->keys->turn_left = 0;
+    window_config->keys->turn_right = 0;
     return (1);
 }
 

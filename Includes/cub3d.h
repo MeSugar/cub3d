@@ -17,6 +17,17 @@
 # include <math.h>
 # include <stdio.h>
 
+typedef struct s_keys
+{
+    int forward;
+    int backward;
+    int left;
+    int right;
+    int turn_left;
+    int turn_right;
+}               t_keys;
+
+
 typedef struct s_image
 {
     void        *img_ptr;
@@ -54,12 +65,12 @@ typedef struct  s_win
     t_player *player;
     t_list  *mapp;
     t_image *image;
+    t_keys  *keys;
 }               t_win;
 
 // Inits
 t_win   *window_config_init(const char *config_file);
-int     map_init(t_win *window_config);
-int     player_init(t_win *window_config);
+int     map_player_keys_init(t_win *window_config);
 int     window_init(t_win *window_config);
 
 // Error management
@@ -73,12 +84,18 @@ int     map_treat(t_win *window_config, char *line, int i);
 int     resolution_treat(t_win *window_config, char *line, int i);
 int     color_treat(t_win *window_config, char *line, int i);
 
-// Draw
+// Drawing
+int main_loop(t_win *window_config);
 int draw_image(t_win *window_config);
 
 // Keys
-int treat_keys(int keycode, t_win *window_config);
 void close_window(t_win *window_config);
+int pressed_keys(int keycode, t_win *window_config);
+int released_keys(int keycode, t_win *window_config);
+void treat_keys(t_win *window_config);
 void move_forward(t_win *window_config);
+void move_backward(t_win *window_config);
+void move_left(t_win *window_config);
+void move_right(t_win *window_config);
 
 #endif

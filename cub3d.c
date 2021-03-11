@@ -11,16 +11,28 @@ static int config_name_check(char *av, char *cub)
     return (1);
 }
 
+static int loop(t_win *window_config)
+{
+    mlx_hook(window_config->win_ptr, 2, 1L<<0, pressed_keys, window_config);
+    mlx_hook(window_config->win_ptr, 3, 1L<<1, released_keys, window_config);
+    mlx_loop_hook(window_config->mlx_ptr, main_loop, window_config);
+    mlx_loop(window_config->mlx_ptr);
+    return (1);
+}
+
 int main(int ac, char **av)
 {
     t_win *window_config;
 
     if (ac == 2 && config_name_check(av[1], ".cub"))
+    {
         if (!(window_config = window_config_init(av[1]))
-        || !map_init(window_config)
-        || !player_init(window_config)
+        || !map_player_keys_init(window_config)
         || !config_parser(window_config)
         || !window_init(window_config)
         || !draw_image(window_config))
             return (0);
+    loop(window_config);
+    }
+    
 }
