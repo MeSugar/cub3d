@@ -52,8 +52,8 @@ void    treat_keys(t_win *window_config)
 		move_left(window_config);
 	if (window_config->keys->right == 1)
 		move_right(window_config);
-	if (window_config->keys->turn_left == 1)
-		turn_left(window_config);
-	if (window_config->keys->turn_right == 1)
-		turn_right(window_config);
+	// if (window_config->keys->turn_left == 1)
+	// 	turn_left(window_config);
+	// if (window_config->keys->turn_right == 1)
+	// 	turn_right(window_config);
 }

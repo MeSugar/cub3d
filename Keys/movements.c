@@ -2,14 +2,14 @@
 
 void move_forward(t_win *window_config)
 {
-    if (window_config->player->py += window_config->player->py / 15 == '0')
-        window_config->player->py += window_config->player->py / 15; 
+    if (window_config->player->py -= window_config->player->py / 15 == '0')
+        window_config->player->py -= window_config->player->py / 15; 
 }
 
 void move_backward(t_win *window_config)
 {
-    if (window_config->player->py -= window_config->player->py / 15 == '0')
-        window_config->player->py -= window_config->player->py / 15;
+    if (window_config->player->py += window_config->player->py / 15 == '0')
+        window_config->player->py += window_config->player->py / 15;
 }
 
 void move_left(t_win *window_config)
