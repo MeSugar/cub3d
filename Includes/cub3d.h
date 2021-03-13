@@ -2,6 +2,7 @@
 # define CUB3D_H
 
 # define BUFFER_SIZE 4096
+# define PI 3.1415926535
 
 # define ESC 53
 # define W 13
@@ -17,7 +18,7 @@
 # include <math.h>
 # include <stdio.h>
 
-typedef struct s_keys
+typedef struct s_buttons
 {
     int forward;
     int backward;
@@ -25,7 +26,7 @@ typedef struct s_keys
     int right;
     int turn_left;
     int turn_right;
-}               t_keys;
+}               t_buttons;
 
 
 typedef struct s_image
@@ -49,6 +50,10 @@ typedef struct      s_player
 {
     double             px;
     double             py;
+    double             pdx;
+    double             pdy;
+    double             pa;
+
     int             players_number;
 }                   t_player;
 
@@ -65,12 +70,12 @@ typedef struct  s_win
     t_player *player;
     t_list  *mapp;
     t_image *image;
-    t_keys  *keys;
+    t_buttons  *buttons;
 }               t_win;
 
 // Inits
 t_win   *window_config_init(const char *config_file);
-int     map_player_keys_init(t_win *window_config);
+int     map_player_buttons_init(t_win *window_config);
 int     window_init(t_win *window_config);
 
 // Error management
@@ -88,14 +93,16 @@ int     color_treat(t_win *window_config, char *line, int i);
 int main_loop(t_win *window_config);
 int draw_image(t_win *window_config);
 
-// Keys
+// Buttons
 void close_window(t_win *window_config);
-int pressed_keys(int keycode, t_win *window_config);
-int released_keys(int keycode, t_win *window_config);
-void treat_keys(t_win *window_config);
+int pressed_buttons(int keycode, t_win *window_config);
+int released_buttons(int keycode, t_win *window_config);
+void treat_buttons(t_win *window_config);
 void move_forward(t_win *window_config);
 void move_backward(t_win *window_config);
 void move_left(t_win *window_config);
 void move_right(t_win *window_config);
+void turn_left(t_win *window_config);
+void turn_right(t_win *window_config);
 
 #endif

@@ -14,7 +14,7 @@ t_win *window_config_init(const char *config_file)
     return (new_config);
 }
 
-int map_player_keys_init(t_win *window_config)
+int map_player_buttons_init(t_win *window_config)
 {
     if (!(window_config->map = calloc(1, sizeof(t_map))))
         return (0);
@@ -26,15 +26,18 @@ int map_player_keys_init(t_win *window_config)
         return (0);
     window_config->player->px = 0;
     window_config->player->py = 0;
+    window_config->player->pdx = 0;
+    window_config->player->pdy = 0;
+    window_config->player->pa = 0;
     window_config->player->players_number = 0;
-    if (!(window_config->keys = calloc(1, sizeof(t_keys))))
+    if (!(window_config->buttons = calloc(1, sizeof(t_buttons))))
         return (0);
-    window_config->keys->forward = 0;
-    window_config->keys->backward = 0;
-    window_config->keys->left = 0;
-    window_config->keys->right = 0;
-    window_config->keys->turn_left = 0;
-    window_config->keys->turn_right = 0;
+    window_config->buttons->forward = 0;
+    window_config->buttons->backward = 0;
+    window_config->buttons->left = 0;
+    window_config->buttons->right = 0;
+    window_config->buttons->turn_left = 0;
+    window_config->buttons->turn_right = 0;
     return (1);
 }
 

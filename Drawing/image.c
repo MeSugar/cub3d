@@ -85,6 +85,17 @@ static void draw_player(t_win *window_config, t_player *player)
         }
         h++;
     }
+    h = 0;
+    while (h < 8)
+    {
+        w = 0;
+        while (w < 4)
+        {
+            pixel_put(window_config->image, player->px + player->pdx * 20 + 200 + w, player->py + player->pdx * 20 + 180 + h, 0x00F0000F);
+                w++;
+        }
+        h++;
+    }
 }
 
 int draw_image(t_win *window_config)
