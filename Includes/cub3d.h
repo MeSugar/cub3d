@@ -53,6 +53,7 @@ typedef struct      s_player
     double             pdx;
     double             pdy;
     double             pa;
+    char               direction;
 
     int             players_number;
 }                   t_player;

@@ -55,6 +55,21 @@ static int map_format_check(char **map, t_win *window_config)
     return (1);
 }
 
+static int set_player_direction(t_win *window_config)
+{
+    if (window_config->player->players_number != 1)
+        return (put_error_msg("Error: Invalid number of players\n"));
+    if (window_config->player->direction == 'N')
+        window_config->player->pa = 3 * PI / 2;
+    if (window_config->player->direction == 'S')
+        window_config->player->pa = PI / 2;
+    if (window_config->player->direction == 'W')
+        window_config->player->pa = PI;
+    if (window_config->player->direction == 'E')
+        window_config->player->pa = 2 * PI;
+    return (1);
+}
+
 int config_parser(t_win *window_config)
 {
     char *line;
@@ -72,6 +87,8 @@ int config_parser(t_win *window_config)
             break;
     }
     if (!map_format_check(window_config->map->map, window_config))
+        return (0);
+    if (!set_player_direction(window_config))
         return (0);
     fd = -1;
     printf("%d\n", window_config->window_width);

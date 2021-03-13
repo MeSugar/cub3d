@@ -13,7 +13,7 @@ LIBFT		=	./Libft/libft.a
 MINILIB		=	libmlx.a mlx.h
 
 SRCS		=	cub3d.c Utils/get_next_line.c Utils/whitespace_skip.c Utils/error_msgs.c Utils/init.c Parsing/config_parse.c Parsing/map_treat.c \
-				Parsing/resolution_treat.c Parsing/color_treat.c Drawing/image.c Drawing/main_loop.c Keys/keys.c Keys/movements.c
+				Parsing/resolution_treat.c Parsing/color_treat.c Drawing/image.c Drawing/main_loop.c Keys/buttons.c Keys/movements.c Keys/turns.c
 
 all : $(NAME)
 
