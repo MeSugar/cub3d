@@ -28,6 +28,8 @@ int map_player_buttons_init(t_win *window_config)
     window_config->player->py = 0;
     window_config->player->pdx = 0;
     window_config->player->pdy = 0;
+    window_config->player->planex = 0;
+    window_config->player->planey = 0;
     window_config->player->pa = 0;
     window_config->player->players_number = 0;
     if (!(window_config->buttons = calloc(1, sizeof(t_buttons))))
@@ -38,6 +40,25 @@ int map_player_buttons_init(t_win *window_config)
     window_config->buttons->right = 0;
     window_config->buttons->turn_left = 0;
     window_config->buttons->turn_right = 0;
+    return (1);
+}
+
+int ray_init(t_win *window_config)
+{
+    if (!(window_config->ray = calloc(1, sizeof(t_ray))))
+        return (0);
+    window_config->ray->mapx = 0;
+    window_config->ray->mapy = 0;
+    window_config->ray->stepx = 0;
+	window_config->ray->stepy = 0;
+	window_config->ray->hit = 0;
+    window_config->ray->camerax = 0;
+    window_config->ray->rdx = 0;
+    window_config->ray->rdy = 0;
+    window_config->ray->side_distx = 0;
+	window_config->ray->side_disty = 0;
+	window_config->ray->delta_distx = 0;
+	window_config->ray->delta_disty = 0;
     return (1);
 }
 

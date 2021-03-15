@@ -18,6 +18,22 @@
 # include <math.h>
 # include <stdio.h>
 
+typedef struct s_ray
+{
+    int     mapx;
+    int     mapy;
+    int		stepx;
+	int		stepy;
+	int		hit;
+    double  camerax;
+    double  rdx;
+    double  rdy;
+    double  side_distx;
+	double  side_disty;
+	double	delta_distx;
+	double	delta_disty;
+}               t_ray;
+
 typedef struct s_buttons
 {
     int forward;
@@ -53,8 +69,9 @@ typedef struct      s_player
     double             pdx;
     double             pdy;
     double             pa;
+    double             planex;
+    double             planey;
     char               direction;
-
     int             players_number;
 }                   t_player;
 
@@ -72,11 +89,13 @@ typedef struct  s_win
     t_list  *mapp;
     t_image *image;
     t_buttons  *buttons;
+    t_ray *ray;
 }               t_win;
 
 // Inits
 t_win   *window_config_init(const char *config_file);
 int     map_player_buttons_init(t_win *window_config);
+int     ray_init(t_win *window_config);
 int     window_init(t_win *window_config);
 
 // Error management
