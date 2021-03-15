@@ -25,6 +25,7 @@ typedef struct s_ray
     int		stepx;
 	int		stepy;
 	int		hit;
+    int     side;
     double  camerax;
     double  rdx;
     double  rdy;
@@ -32,6 +33,7 @@ typedef struct s_ray
 	double  side_disty;
 	double	delta_distx;
 	double	delta_disty;
+    double  right_wall_dist;
 }               t_ray;
 
 typedef struct s_buttons
@@ -95,7 +97,6 @@ typedef struct  s_win
 // Inits
 t_win   *window_config_init(const char *config_file);
 int     map_player_buttons_init(t_win *window_config);
-int     ray_init(t_win *window_config);
 int     window_init(t_win *window_config);
 
 // Error management
@@ -111,7 +112,10 @@ int     color_treat(t_win *window_config, char *line, int i);
 
 // Drawing
 int main_loop(t_win *window_config);
-int draw_image(t_win *window_config);
+int draw_screen(t_win *window_config);
+void set_ray(t_win *window_config, int rays);
+void set_side_dist(t_win *window_config);
+void calculate_right_wall_dist(t_win *window_config);
 
 // Buttons
 void close_window(t_win *window_config);

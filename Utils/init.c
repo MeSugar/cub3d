@@ -43,25 +43,6 @@ int map_player_buttons_init(t_win *window_config)
     return (1);
 }
 
-int ray_init(t_win *window_config)
-{
-    if (!(window_config->ray = calloc(1, sizeof(t_ray))))
-        return (0);
-    window_config->ray->mapx = 0;
-    window_config->ray->mapy = 0;
-    window_config->ray->stepx = 0;
-	window_config->ray->stepy = 0;
-	window_config->ray->hit = 0;
-    window_config->ray->camerax = 0;
-    window_config->ray->rdx = 0;
-    window_config->ray->rdy = 0;
-    window_config->ray->side_distx = 0;
-	window_config->ray->side_disty = 0;
-	window_config->ray->delta_distx = 0;
-	window_config->ray->delta_disty = 0;
-    return (1);
-}
-
 int window_init(t_win *window_config)
 {
     if (!(window_config->mlx_ptr = mlx_init()))

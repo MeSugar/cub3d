@@ -101,10 +101,10 @@ static void draw_player(t_win *window_config, t_player *player)
 int draw_image(t_win *window_config)
 {
     if (!(window_config->image = calloc(1, sizeof(t_image))))
-        return (0);
+        return (put_error_msg("Error: Malloc error\n"));
     if (!(window_config->image->img_ptr = mlx_new_image(window_config->mlx_ptr,
     window_config->window_width, window_config->window_height)))
-        return (0);
+        return (put_error_msg("Error: Malloc error\n"));
     window_config->image->addr = mlx_get_data_addr(window_config->image->img_ptr,
     &window_config->image->bpp, &window_config->image->line_length, &window_config->image->endian);
     draw_map(window_config);
