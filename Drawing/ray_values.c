@@ -2,6 +2,7 @@
 
 void set_ray(t_win *window_config, int rays)
 {
+	window_config->ray->hit = 0;
     window_config->ray->camerax = (2 * rays) / (double)window_config->window_width - 1;
 	window_config->ray->rdx = window_config->player->pdx + window_config->player->planex * window_config->ray->camerax;
 	window_config->ray->rdy = window_config->player->pdy + window_config->player->planey * window_config->ray->camerax;
@@ -43,20 +44,13 @@ void find_wall(t_win *window_config)
         {
             window_config->ray->side_distx += window_config->ray->delta_distx;
             window_config->ray->mapx += window_config->ray->stepx;
-            if (window_config->ray->stepx == 1)
-				window_config->ray->side = 0;
-			else if (window_config->ray->stepx == -1)
-				window_config->ray->side = 1;	
+			window_config->ray->side = 0;
         }
         else
         {
             window_config->ray->side_disty += window_config->ray->delta_disty;
             window_config->ray->mapy += window_config->ray->stepy;
             window_config->ray->side = 1;
-			if (window_config->ray->stepy == 1)
-				window_config->ray->side = 2;
-			else if (window_config->ray->stepy == -1)
-				window_config->ray->side = 3;
         }
         if (window_config->map->map[window_config->ray->mapy][window_config->ray->mapx] == '1') 
             window_config->ray->hit = 1;

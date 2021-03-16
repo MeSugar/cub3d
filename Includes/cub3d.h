@@ -73,7 +73,7 @@ typedef struct      s_player
     double             py;
     double             pdx;
     double             pdy;
-    double             pa;
+    float             pa;
     double             planex;
     double             planey;
     char               direction;

@@ -18,7 +18,7 @@ int draw_screen(t_win *window_config)
     window_config->player->pdy = sin(window_config->player->pa);
     if (!(window_config->ray = calloc(1, sizeof(t_ray))))
         return (put_error_msg("Error: Malloc error\n"));
-    while (++rays < 2)
+    while (++rays < 10)
         raycast(window_config, rays);
     mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
     return (1);
