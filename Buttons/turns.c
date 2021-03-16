@@ -2,28 +2,18 @@
 
 void turn_left(t_win *window_config)
 {
-    double olddirx;
-	double oldplanex;
-
-    olddirx = window_config->player->pdx;
-	oldplanex = window_config->player->planex;
-    
-	window_config->player->pdx = window_config->player->pdx * cos(-TURN) - window_config->player->pdy * sin(-TURN);
-	window_config->player->pdy = olddirx * sin(-TURN) + window_config->player->pdy * cos(-TURN);
-	window_config->player->planex = window_config->player->planex * cos(-TURN) - window_config->player->planey * sin(-TURN);
-	window_config->player->planey = oldplanex * sin(-TURN) + window_config->player->planey * cos(-TURN);
+    window_config->player->pa -= 0.1;
+    if (window_config->player->pa < 0)
+        window_config->player->pa += 2 * PI;
+    window_config->player->pdx = cos(window_config->player->pa) * 5;
+    window_config->player->pdy = sin(window_config->player->pa) * 5;
 }
 
 void turn_right(t_win *window_config)
 {
-    double olddirx;
-	double oldplanex;
-
-    olddirx = window_config->player->pdx;
-	oldplanex = window_config->player->planex;
-    
-	window_config->player->pdx = window_config->player->pdx * cos(TURN) - window_config->player->pdy * sin(TURN);
-	window_config->player->pdy = olddirx * sin(TURN) + window_config->player->pdy * cos(TURN);
-	window_config->player->planex = window_config->player->planex * cos(TURN) - window_config->player->planey * sin(TURN);
-	window_config->player->planey = oldplanex * sin(TURN) + window_config->player->planey * cos(TURN);
+    window_config->player->pa += 0.1;
+    if (window_config->player->pa > 2 * PI)
+        window_config->player->pa -= 2 * PI;
+    window_config->player->pdx = cos(window_config->player->pa) * 5;
+    window_config->player->pdy = sin(window_config->player->pa) * 5;
 }

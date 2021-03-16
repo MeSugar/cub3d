@@ -103,6 +103,7 @@ typedef struct  s_win
 t_win   *window_config_init(const char *config_file);
 int     map_player_buttons_init(t_win *window_config);
 int     window_init(t_win *window_config);
+int     image_init(t_win *window_config);
 
 // Error management
 int put_error_msg(char *error_message);

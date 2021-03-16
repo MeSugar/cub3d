@@ -21,5 +21,6 @@ int draw_screen(t_win *window_config)
     while (++rays < 10)
         raycast(window_config, rays);
     mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
+    free(window_config->ray);
     return (1);
 }
