@@ -8,20 +8,20 @@ static void pixel_put(t_image *image, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-static void draw_map(t_win *window_config)
+static void draw_map(t_win *window_config, int rays)
 {
-    int x = 0;
+    int x = rays;
     int y = window_config->ray->draw_start;
 
-    while (x < window_config->window_width)
-    {
-        y = window_config->ray->draw_start;;
+    // while (x < window_config->window_width)
+    // {
+        // y = window_config->ray->draw_start;
         while (y < window_config->ray->draw_end)
         {
             pixel_put(window_config->image, x, y, 0x00FF0000);
             y++;
         }
-    }
+    // }
     // int x;
     // int y;
     // int w;
@@ -110,7 +110,7 @@ static void draw_map(t_win *window_config)
 //     }
 // }
 
-int draw_image(t_win *window_config)
+int draw_image(t_win *window_config, int rays)
 {
     if (!(window_config->image = calloc(1, sizeof(t_image))))
         return (put_error_msg("Error: Malloc error\n"));
@@ -119,10 +119,8 @@ int draw_image(t_win *window_config)
         return (put_error_msg("Error: Malloc error\n"));
     window_config->image->addr = mlx_get_data_addr(window_config->image->img_ptr,
     &window_config->image->bpp, &window_config->image->line_length, &window_config->image->endian);
-    window_config->player->pdx = cos(window_config->player->pa);
-    window_config->player->pdy = sin(window_config->player->pa);
-    draw_map(window_config);
+    draw_map(window_config, rays);
     // draw_player(window_config, window_config->player);
-    mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
+    
     return (1);
 }

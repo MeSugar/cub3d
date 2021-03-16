@@ -116,7 +116,7 @@ int     color_treat(t_win *window_config, char *line, int i);
 // Drawing
 int main_loop(t_win *window_config);
 int draw_screen(t_win *window_config);
-int draw_image(t_win *window_config);
+int draw_image(t_win *window_config, int rays);
 void set_ray(t_win *window_config, int rays);
 void set_side_dist(t_win *window_config);
 void find_wall(t_win *window_config);
