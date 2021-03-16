@@ -7,6 +7,7 @@ static void raycast(t_win *window_config, int rays)
     set_ray(window_config, rays);
     set_side_dist(window_config);
     find_wall(window_config);
+    draw_image(window_config);
 }
 
 int draw_screen(t_win *window_config)

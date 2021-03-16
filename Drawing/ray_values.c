@@ -51,7 +51,7 @@ void find_wall(t_win *window_config)
             window_config->ray->mapy += window_config->ray->stepy;
             window_config->ray->side = 1;
         }
-        if (window_config->map->map[window_config->ray->mapx][window_config->ray->mapy] == '1') 
+        if (window_config->map->map[window_config->ray->mapy][window_config->ray->mapx] == '1') 
             window_config->ray->hit = 1;
     }
 }

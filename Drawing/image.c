@@ -80,35 +80,35 @@ static void draw_map(t_win *window_config)
     // }
 }
 
-static void draw_player(t_win *window_config, t_player *player)
-{
-    int w;
-    int h;
+// static void draw_player(t_win *window_config, t_player *player)
+// {
+//     int w;
+//     int h;
 
-    w = 0;
-    h = 0;
-    while (h < 15)
-    {
-        w = 0;
-        while (w < 15)
-        {
-            pixel_put(window_config->image, player->px * 20 + 200 + w, player->py * 20 + 180 + h, 0x000000FF);
-                w++;
-        }
-        h++;
-    }
-    h = 0;
-    while (h < 15)
-    {
-        w = 0;
-        while (w < 4)
-        {
-            pixel_put(window_config->image, player->px * 20 + player->pdx + 200 + w, player->py * 20 + player->pdy + 180 + h, 0x0000FF0F);
-                w++;
-        }
-        h++;
-    }
-}
+//     w = 0;
+//     h = 0;
+//     while (h < 15)
+//     {
+//         w = 0;
+//         while (w < 15)
+//         {
+//             pixel_put(window_config->image, player->px * 20 + 200 + w, player->py * 20 + 180 + h, 0x000000FF);
+//                 w++;
+//         }
+//         h++;
+//     }
+//     h = 0;
+//     while (h < 15)
+//     {
+//         w = 0;
+//         while (w < 4)
+//         {
+//             pixel_put(window_config->image, player->px * 20 + player->pdx + 200 + w, player->py * 20 + player->pdy + 180 + h, 0x0000FF0F);
+//                 w++;
+//         }
+//         h++;
+//     }
+// }
 
 int draw_image(t_win *window_config)
 {
@@ -119,10 +119,10 @@ int draw_image(t_win *window_config)
         return (put_error_msg("Error: Malloc error\n"));
     window_config->image->addr = mlx_get_data_addr(window_config->image->img_ptr,
     &window_config->image->bpp, &window_config->image->line_length, &window_config->image->endian);
-    draw_map(window_config);
     window_config->player->pdx = cos(window_config->player->pa);
     window_config->player->pdy = sin(window_config->player->pa);
-    draw_player(window_config, window_config->player);
+    draw_map(window_config);
+    // draw_player(window_config, window_config->player);
     mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
     return (1);
 }
