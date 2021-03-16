@@ -57,8 +57,8 @@ static int map_format_check(char **map, t_win *window_config)
 
 static void set_player_plane(t_win *window_config, double pdx, double pdy, double planex, double planey)
 {
-    window_config->player->pdx;
-    window_config->player->pdy;
+    window_config->player->pdx = pdx;
+    window_config->player->pdy = pdy;
     window_config->player->planex = planex;
     window_config->player->planey = planey;
 }
