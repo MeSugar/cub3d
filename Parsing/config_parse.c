@@ -55,11 +55,12 @@ static int map_format_check(char **map, t_win *window_config)
     return (1);
 }
 
-static void set_player_plane(t_win *window_config, double angle, double x, double y)
+static void set_player_plane(t_win *window_config, double pdx, double pdy, double planex, double planey)
 {
-    window_config->player->pa = angle;
-    window_config->player->planex = x;
-    window_config->player->planey = y;
+    window_config->player->pdx;
+    window_config->player->pdy;
+    window_config->player->planex = planex;
+    window_config->player->planey = planey;
 }
 
 static int set_player_direction(t_win *window_config)
@@ -67,13 +68,13 @@ static int set_player_direction(t_win *window_config)
     if (window_config->player->players_number != 1)
         return (put_error_msg("Error: Invalid number of players\n"));
     if (window_config->player->direction == 'N')
-        set_player_plane(window_config, 3 * PI / 2, 0.66, 0);
+        set_player_plane(window_config, 0, 1, 0.66, 0);
     if (window_config->player->direction == 'S')
-        set_player_plane(window_config, PI / 2, -0.66, 0);
+        set_player_plane(window_config, 0, -1, -0.66, 0);
     if (window_config->player->direction == 'W')
-        set_player_plane(window_config, PI, 0, -0.66);
+        set_player_plane(window_config, -1, 0, 0, -0.66);
     if (window_config->player->direction == 'E')
-        set_player_plane(window_config, PI / 2, 0, 0.66);
+        set_player_plane(window_config, 1, 0, 0, 0.66);
     return (1);
 }
 
