@@ -37,6 +37,7 @@ int map_treat(t_win *window_config, char *line, int i)
             window_config->player->py = window_config->map->height;
             window_config->player->players_number++;
             window_config->player->direction = line[i];
+            line[i] = '0';
             i++;
         }
         else
