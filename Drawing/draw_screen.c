@@ -14,8 +14,8 @@ int draw_screen(t_win *window_config)
     int rays;
 
     rays = -1;
-    window_config->player->pdx = cos(window_config->player->pa);
-    window_config->player->pdy = sin(window_config->player->pa);
+    window_config->player->pdx = cos(window_config->player->pa) * 5;
+    window_config->player->pdy = sin(window_config->player->pa) * 5;
     if (!(window_config->ray = calloc(1, sizeof(t_ray))))
         return (put_error_msg("Error: Malloc error\n"));
     while (++rays < 10)
