@@ -13,12 +13,13 @@ static void raycast(t_win *window_config, int rays)
 
 int draw_screen(t_win *window_config)
 {
+    t_ray *ray;
     int rays;
 
     rays = -1;
     window_config->player->pdx = cos(window_config->player->pa);
     window_config->player->pdy = sin(window_config->player->pa);
-    if (!(window_config->ray = calloc(1, sizeof(t_ray))))
+    if (!(ray = calloc(1, sizeof(t_ray))))
         return (put_error_msg("Error: Malloc error\n"));
     while (++rays < 2)
         raycast(window_config, rays);

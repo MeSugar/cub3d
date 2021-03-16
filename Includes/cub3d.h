@@ -94,7 +94,6 @@ typedef struct  s_win
     t_list  *mapp;
     t_image *image;
     t_buttons  *buttons;
-    t_ray *ray;
 }               t_win;
 
 // Inits
