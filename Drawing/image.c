@@ -1,8 +1,10 @@
 #include "cub3d.h"
 
-static void pixel_put(t_image *image, int x, int y, int color)
+void pixel_put(t_image *image, int x, int y, int color)
 {
     char *dst;
+
+    // if (window_config->ray->side == 1)
 
     dst = image->addr + (y * image->line_length + x * (image->bpp / 8));
     *(unsigned int*)dst = color;
@@ -10,15 +12,19 @@ static void pixel_put(t_image *image, int x, int y, int color)
 
 static void draw_map(t_win *window_config, int rays)
 {
-    int x = rays;
-    int y = window_config->ray->draw_start;
-
+    int x;
+    int y;
+    int color = 0x00FF0000;
+    if (window_config->ray->side == 1)
+        color /= 3;
     // while (x < window_config->window_width)
     // {
         // y = window_config->ray->draw_start;
+        x = rays;
+        y = window_config->ray->draw_start;
         while (y < window_config->ray->draw_end)
         {
-            pixel_put(window_config->image, x, y, 0x00FF0000);
+            pixel_put(window_config->image, x, y, color);
             y++;
         }
     // }

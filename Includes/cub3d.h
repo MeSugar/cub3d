@@ -117,6 +117,7 @@ int     resolution_treat(t_win *window_config, char *line, int i);
 int     color_treat(t_win *window_config, char *line, int i);
 
 // Drawing
+void pixel_put(t_image *image, int x, int y, int color);
 int main_loop(t_win *window_config);
 int draw_screen(t_win *window_config);
 int draw_image(t_win *window_config, int rays);
