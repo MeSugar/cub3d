@@ -10,62 +10,74 @@ static void pixel_put(t_image *image, int x, int y, int color)
 
 static void draw_map(t_win *window_config)
 {
-    int x;
-    int y;
-    int w;
-    int h;
-    int h2;
-    int w2;
-    char **tab;
+    int x = 0;
+    int y = window_config->ray->draw_start;
 
-    x = 0;
-    y = 0;
-    w = 200;
-    h = 200;
-    h2 = h;
-    w2 = w;
-    tab = window_config->map->map;
-    while (tab[x])
+    while (x < window_config->window_width)
     {
-        while (tab[x][y])
+        y = window_config->ray->draw_start;;
+        while (y < window_config->ray->draw_end)
         {
-            if (tab[x][y] == '1')
-            {
-                while (w < w2 + 20)
-                {
-                    h = h2;
-                    while (h < h2 + 20)
-                    {
-                        pixel_put(window_config->image, w, h, 0x00FF0000);
-                        h++;
-                    }
-                    w++;
-                }
-            }
-            else if (tab[x][y] == '2')
-            {
-                while (w < w2 + 20)
-                {
-                    h = h2;
-                    while (h < h2 + 20)
-                    {
-                        pixel_put(window_config->image, w, h, 0x0000FF00);
-                        h++;
-                    }
-                    w++;
-                }
-            }
-            else
-                w += 20;
+            pixel_put(window_config->image, x, y, 0x00FF0000);
             y++;
-            w2 = w;
         }
-        x++;
-        y = 0;
-        h2 += 20;
-        w = 200;
-        w2 = w;
     }
+    // int x;
+    // int y;
+    // int w;
+    // int h;
+    // int h2;
+    // int w2;
+    // char **tab;
+
+    // x = 0;
+    // y = 0;
+    // w = 200;
+    // h = 200;
+    // h2 = h;
+    // w2 = w;
+    // tab = window_config->map->map;
+    // while (tab[x])
+    // {
+    //     while (tab[x][y])
+    //     {
+    //         if (tab[x][y] == '1')
+    //         {
+    //             while (w < w2 + 20)
+    //             {
+    //                 h = h2;
+    //                 while (h < h2 + 20)
+    //                 {
+    //                     pixel_put(window_config->image, w, h, 0x00FF0000);
+    //                     h++;
+    //                 }
+    //                 w++;
+    //             }
+    //         }
+    //         else if (tab[x][y] == '2')
+    //         {
+    //             while (w < w2 + 20)
+    //             {
+    //                 h = h2;
+    //                 while (h < h2 + 20)
+    //                 {
+    //                     pixel_put(window_config->image, w, h, 0x0000FF00);
+    //                     h++;
+    //                 }
+    //                 w++;
+    //             }
+    //         }
+    //         else
+    //             w += 20;
+    //         y++;
+    //         w2 = w;
+    //     }
+    //     x++;
+    //     y = 0;
+    //     h2 += 20;
+    //     w = 200;
+    //     w2 = w;
+    // }
 }
 
 static void draw_player(t_win *window_config, t_player *player)

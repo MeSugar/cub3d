@@ -26,6 +26,9 @@ typedef struct s_ray
 	int		stepy;
 	int		hit;
     int     side;
+    int     wall_height;
+    int     draw_start;
+    int     draw_end;
     double  camerax;
     double  rdx;
     double  rdy;
@@ -33,7 +36,7 @@ typedef struct s_ray
 	double  side_disty;
 	double	delta_distx;
 	double	delta_disty;
-    double  right_wall_dist;
+    double  wall_dist;
 }               t_ray;
 
 typedef struct s_buttons
@@ -115,7 +118,8 @@ int main_loop(t_win *window_config);
 int draw_screen(t_win *window_config);
 void set_ray(t_win *window_config, int rays);
 void set_side_dist(t_win *window_config);
-void calculate_right_wall_dist(t_win *window_config);
+void find_wall(t_win *window_config);
+void calculate_wall_dist_n_height(t_win *window_config);
 
 // Buttons
 void close_window(t_win *window_config);
