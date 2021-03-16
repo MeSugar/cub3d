@@ -11,6 +11,8 @@
 # define D 2
 # define TURN_LEFT 123
 # define TURN_RIGHT 124
+# define SPEED 0.2
+# define TURN 0.1
 
 # include <fcntl.h>
 # include "mlx.h"
@@ -73,7 +75,7 @@ typedef struct      s_player
     double             py;
     double             pdx;
     double             pdy;
-    float             pa;
+    float              pa;
     double             planex;
     double             planey;
     char               direction;
