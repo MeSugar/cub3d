@@ -29,7 +29,10 @@ static char *save_file_name(char *line, int i)
     while (line[i] && ft_isprint(line[i]) && line[i] != ' ')
 		i++;
     if (!(file = ft_calloc((i - start + 1), sizeof(char))))
-        return (put_error_msg("Error: Malloc error\n"));
+    {
+        put_error_msg("Error: Malloc error\n");
+        return (0);
+    }
     i = start;
     start = 0;
     while (line[i] && line[i] != ' ')
@@ -37,11 +40,10 @@ static char *save_file_name(char *line, int i)
     return (file);
 }
 
-static t_image *xpm_to_img(t_win *window_config, char *file)
+static int xpm_to_img(t_win *window_config, char *file, t_image *img)
 {
     int fd;
     int format;
-    t_image *img;
 
     format = 0;
     if (!(img = ft_calloc(1, sizeof(t_image))))
@@ -53,16 +55,16 @@ static t_image *xpm_to_img(t_win *window_config, char *file)
         if (!(img->img_ptr = mlx_xpm_file_to_image(window_config->mlx_ptr, file, &img->width, &img->height)))
             return (put_error_msg("Error: Can't open texture file\n"));
     }
-    if (name_check(file, ".png"))
+    if (!name_check(file, ".png"))
     {
-        if (!(img->img_ptr = mlx_png_file_to_image(window_config->mlx_ptr, file, &img->width, &img->height)))
+        // if (!(img->img_ptr = mlx_png_file_to_image(window_config->mlx_ptr, file, &img->width, &img->height)))
             return (put_error_msg("Error: Can't open texture file\n"));
     }
     if (!format)
         return (put_error_msg("Error: Can't open texture file\n"));
     if (!(img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_length, &img->endian)))
         return (put_error_msg("Error: Can't open texture file\n"));
-    return (img);
+    return (1);
 }
 
 int texture_treat(t_win *window_config, char *line, int i)
@@ -70,11 +72,12 @@ int texture_treat(t_win *window_config, char *line, int i)
     char *file_name;
     t_image *img;
 
+    img = 0;
     if (!texture_fomat_check(window_config, line, i))
         return (0);
     if (!(file_name = save_file_name(line, i)))
         return (0);
-    if (!(img = xpm_to_img(window_config, file_name)))
+    if (!(xpm_to_img(window_config, file_name, img)))
         return (0);
     if (line[i] == 'N' && line[i + 1] == 'O')
         window_config->no = img;

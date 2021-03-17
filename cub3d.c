@@ -28,6 +28,7 @@ int main(int ac, char **av)
     {
         if (!(window_config = window_config_init(av[1]))
         || !map_player_buttons_init(window_config)
+        || !texture_init(window_config)
         || !config_parser(window_config)
         || !window_init(window_config)
         || !image_init(window_config))

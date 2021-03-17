@@ -5,7 +5,7 @@ t_win *window_config_init(const char *config_file)
     t_win *new_config;
 
     if (!(new_config = ft_calloc(1, sizeof(t_win))))
-        return (put_error_msg("Error: Malloc error\n"));
+        return (0);
     new_config->config_file = config_file;
     return (new_config);
 }

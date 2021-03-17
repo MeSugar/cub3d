@@ -20,16 +20,6 @@
 # include <math.h>
 # include <stdio.h>
 
-typedef struct s_tex
-{
-    t_image ;
-    int backward;
-    int left;
-    int right;
-    int turn_left;
-    int turn_right;
-}               t_tex;
-
 typedef struct s_ray
 {
     int     mapx;
