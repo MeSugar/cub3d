@@ -2,7 +2,7 @@
 # define CUB3D_H
 
 # define BUFFER_SIZE 4096
-# define PI 3.1415926535
+// # define PI 3.1415926535
 
 # define ESC 53
 # define W 13
@@ -19,6 +19,16 @@
 # include "libft.h"
 # include <math.h>
 # include <stdio.h>
+
+typedef struct s_tex
+{
+    t_image ;
+    int backward;
+    int left;
+    int right;
+    int turn_left;
+    int turn_right;
+}               t_tex;
 
 typedef struct s_ray
 {
@@ -59,6 +69,8 @@ typedef struct s_image
     int         bpp;
     int         line_length;
     int         endian;
+    int         width;
+    int         height;
 }              t_image;
 
 typedef struct      s_map
@@ -97,6 +109,11 @@ typedef struct  s_win
     t_image *image;
     t_buttons  *buttons;
     t_ray *ray;
+    t_image *no;
+    t_image *so;
+    t_image *we;
+    t_image *ea;
+    t_image *sprite;
 }               t_win;
 
 // Inits
@@ -104,8 +121,10 @@ t_win   *window_config_init(const char *config_file);
 int     map_player_buttons_init(t_win *window_config);
 int     window_init(t_win *window_config);
 int     image_init(t_win *window_config);
+int     texture_init(t_win *window_config);
 
 // Error management
+int name_check(char *av, char *cub);
 int put_error_msg(char *error_message);
 
 // Parsing
@@ -115,6 +134,7 @@ void    whitespace_skip(int *i, char *line);
 int     map_treat(t_win *window_config, char *line, int i);
 int     resolution_treat(t_win *window_config, char *line, int i);
 int     color_treat(t_win *window_config, char *line, int i);
+int     texture_treat(t_win *window_config, char *line, int i);
 
 // Drawing
 void pixel_put(t_image *image, int x, int y, int color);

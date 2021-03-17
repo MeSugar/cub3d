@@ -41,7 +41,7 @@ int     resolution_treat(t_win *window_config, char *line, int i)
     if (window_config->window_width || window_config->window_height)
         return (put_error_msg("Error: Resolution specified twice\n"));
     // whitespace_skip(&i, line);
-    if (line [i] && line[i] == 'R')
+    if (line[i] && line[i] == 'R')
         i++;
     whitespace_skip(&i, line);
     if (!resoluiton_fomat_check(line, i))

@@ -1,5 +1,5 @@
 #include "cub3d.h"
-static int config_name_check(char *av, char *cub)
+int name_check(char *av, char *cub)
 {
     int i;
 
@@ -24,7 +24,7 @@ int main(int ac, char **av)
 {
     t_win *window_config;
 
-    if (ac == 2 && config_name_check(av[1], ".cub"))
+    if (ac == 2 && name_check(av[1], ".cub"))
     {
         if (!(window_config = window_config_init(av[1]))
         || !map_player_buttons_init(window_config)

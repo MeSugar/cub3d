@@ -14,6 +14,12 @@ static int  line_treat(t_win *window_config, char *line, int rtn)
         error = resolution_treat(window_config, line, i);
     else if (line[i] && (line[i] == 'C' || line[i] == 'F') && line[i + 1] == ' ')
         error = color_treat(window_config, line, i);
+    else if (line[i] && ((line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
+    || (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ')
+    || (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ')
+    || (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ')
+    || (line[i] == 'S' && line[i + 1] == ' ')))
+        error = texture_treat(window_config, line, i);
     else if (line[i] == '\0' && rtn && !window_config->map->map_exists)
         return (error);
     else
