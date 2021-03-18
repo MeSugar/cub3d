@@ -10,7 +10,7 @@ void pixel_put(t_image *image, int x, int y, int color)
 
 
 
-static void draw_map(t_win *window_config, int rays, char **screen_buf)
+void draw_map(t_win *window_config, char **screen_buf)
 {
     // int x;
     // int y;
@@ -44,22 +44,11 @@ int draw_image(t_win *window_config, int rays)
     double wallx;
     int    texx;
     int    texy;
-    char **screen_buf;
-    int i;
     double step;
     double texpos;
     int y;
     int color;
     
-    if (!(screen_buf = ft_calloc(window_config->window_height, sizeof(int *))))
-        return (put_error_msg("Error: Malloc error\n"));
-    i = 0;
-    while (i < window_config->window_height)
-    {
-        if (!(screen_buf[i] = ft_calloc(window_config->window_width, sizeof(int))))
-            return (put_error_msg("Error: Malloc error\n"));
-        i++;
-    }
     if (window_config->ray->side == 0)
 		wallx = window_config->player->py + window_config->ray->wall_dist * window_config->ray->rdy;
 	else
@@ -77,10 +66,11 @@ int draw_image(t_win *window_config, int rays)
     {
         texy = (int)texpos & (window_config->no->height - 1);
         texpos += step;
-        color = window_config->no->addr[texy * window_config->no->line_length * texx * (window_config->no->bpp / 8)];
-        screen_buf[y][rays] = color;
+        color = (unsigned int)(*(window_config->no->addr + (texy * window_config->no->line_length + texx * (window_config->no->bpp / 8))));
+        window_config->buf[y][rays] = color;
+        // printf("color %d\n", screen_buf[y][rays]);
         y++;
     }
-    draw_map(window_config, rays, screen_buf);
+    // draw_map(window_config, screen_buf);
     return (1);
 }

@@ -70,6 +70,7 @@ int texture_treat(t_win *window_config, char *line, int i)
     char *file_name;
     t_image *img;
 
+    img = 0;
     if (!texture_fomat_check(window_config, line, i))
         return (0);
     if (!(file_name = save_file_name(line, i)))
@@ -89,6 +90,6 @@ int texture_treat(t_win *window_config, char *line, int i)
     if (line[i] == 'S' && line[i + 1] == ' ')
         window_config->sprite = img;
     free(file_name);
-    free(img);
+    // free(img);
     return (1);
 }
