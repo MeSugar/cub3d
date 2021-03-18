@@ -10,29 +10,36 @@ void pixel_put(t_image *image, int x, int y, int color)
 
 
 
-void draw_map(t_win *window_config, char **screen_buf)
+// void draw_map(t_win *window_config, int rays)
+// {
+//     int x;
+//     int y;
+//     int color = 0x00FF0000;
+//     if (window_config->ray->side == 1)
+//         color /= 3;
+//     x = rays;
+//     y = window_config->ray->draw_start;
+//     while (y < window_config->ray->draw_end)
+//     {
+//         pixel_put(window_config->image, x, y, color);
+//         y++;
+//     }
+// }
+
+void draw_map(t_win *window_config, char **buff)
 {
-    // int x;
-    // int y;
-    // int color = 0x00FF0000;
-    // if (window_config->ray->side == 1)
-    //     color /= 3;
-    // x = rays;
-    // y = window_config->ray->draw_start;
-    // while (y < window_config->ray->draw_end)
-    // {
-    //     pixel_put(window_config->image, x, y, color);
-    //     y++;
-    // }
     int x = 0;
     int y = 0;
     
-    while (screen_buf[x])
+    while (buff[x])
     {
         y = 0;
-        while (screen_buf[y][x])
+        while (buff[y][x])
         {
-            pixel_put(window_config->image, y, x, screen_buf[y][x]);
+            if (!buff[y][x])
+                x++;
+            else 
+                pixel_put(window_config->image, y, x, buff[y][x]);
             y++;
         }
         x++;
@@ -77,6 +84,6 @@ int draw_image(t_win *window_config, int rays)
         window_config->buff[y][rays] = color;
         y++;
     }
-    // draw_map(window_config, screen_buf);
+//     // draw_map(window_config, rays);
     return (1);
 }
