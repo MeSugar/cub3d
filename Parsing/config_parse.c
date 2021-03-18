@@ -100,10 +100,12 @@ int config_parser(t_win *window_config)
         if (rtn == 0)
             break;
     }
+    close (fd);
     if (!map_format_check(window_config->map->map, window_config))
         return (0);
     if (!set_player_direction(window_config))
         return (0);
+    
     fd = -1;
     printf("%d\n", window_config->window_width);
     printf("%d\n", window_config->window_height);

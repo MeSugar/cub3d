@@ -4,10 +4,12 @@ int name_check(char *av, char *cub)
     int i;
 
     i = 0;
+    if (*av == '.' && *(av + 1) == '/')
+        av++;
     while(*av && *av != '.')
         av++;
     if (*av != '.' || !ft_strnstr(av, cub, 4))
-        return (put_error_msg("Error: Invalid config file name\n"));
+        return (put_error_msg("Error: Invalid file name\n"));
     return (1);
 }
 
