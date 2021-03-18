@@ -43,9 +43,7 @@ static char *save_file_name(char *line, int i)
 static int xpm_to_img(t_win *window_config, char *file, t_image *img)
 {
     int fd;
- 
-    if (!(img = ft_calloc(1, sizeof(t_image))))
-        return (put_error_msg("Error: Malloc error\n"));
+
     if (!(fd = open(file, O_RDONLY)))
         return (put_error_msg("Error: Can't open texture file\n"));
     close (fd);
@@ -59,6 +57,8 @@ static int xpm_to_img(t_win *window_config, char *file, t_image *img)
     //     if (!(img->img_ptr = mlx_png_file_to_image(window_config->mlx_ptr, file, &img->width, &img->height)))
     //         return (put_error_msg("Error: Can't open texture file\n"));
     // }
+    else
+        return (0);
     if (!(img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_length, &img->endian)))
         return (put_error_msg("Error: Can't open texture file\n"));
     printf("texture %s\n", file);
@@ -70,11 +70,12 @@ int texture_treat(t_win *window_config, char *line, int i)
     char *file_name;
     t_image *img;
 
-    img = 0;
     if (!texture_fomat_check(window_config, line, i))
         return (0);
     if (!(file_name = save_file_name(line, i)))
         return (0);
+    if (!(img = ft_calloc(1, sizeof(t_image))))
+        return (put_error_msg("Error: Malloc error\n"));
     if (!(xpm_to_img(window_config, file_name, img)))
         return (0);
     if (line[i] == 'N' && line[i + 1] == 'O')

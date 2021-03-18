@@ -74,13 +74,13 @@ static int set_player_direction(t_win *window_config)
     if (window_config->player->players_number != 1)
         return (put_error_msg("Error: Invalid number of players\n"));
     if (window_config->player->direction == 'N')
-        set_player_plane(window_config, 0, -1, 0.8, 0);
+        set_player_plane(window_config, 0, -1, 0.5, 0);
     if (window_config->player->direction == 'S')
-        set_player_plane(window_config, 0, 1, -0.8, 0);
+        set_player_plane(window_config, 0, 1, -0.5, 0);
     if (window_config->player->direction == 'W')
-        set_player_plane(window_config, -1, 0, 0, -0.8);
+        set_player_plane(window_config, -1, 0, 0, -0.5);
     if (window_config->player->direction == 'E')
-        set_player_plane(window_config, 1, 0, 0, 0.8);
+        set_player_plane(window_config, 1, 0, 0, 0.5);
     return (1);
 }
 

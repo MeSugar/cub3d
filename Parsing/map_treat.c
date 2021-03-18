@@ -33,8 +33,8 @@ int map_treat(t_win *window_config, char *line, int i)
             i++;
         else if ((line[i] == 'N' || line[i] == 'E' || line[i] == 'S' || line[i] == 'W'))
         {
-            window_config->player->px = i;
-            window_config->player->py = window_config->map->height;
+            window_config->player->px = (double)(i + 0.5);
+            window_config->player->py = (double)(window_config->map->height - 0.5);
             window_config->player->players_number++;
             window_config->player->direction = line[i];
             line[i] = '0';

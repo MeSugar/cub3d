@@ -5,8 +5,16 @@ t_win *window_config_init(const char *config_file)
     t_win *new_config;
 
     if (!(new_config = ft_calloc(1, sizeof(t_win))))
+    {
+        put_error_msg("Error: Malloc error\n");
         return (0);
+    }
     new_config->config_file = config_file;
+    if (!(new_config->mlx_ptr = mlx_init()))
+    {
+        put_error_msg("Error: MLX init error\n");
+        return (0);
+    }
     return (new_config);
 }
 
@@ -23,8 +31,6 @@ int map_player_buttons_init(t_win *window_config)
 
 int window_init(t_win *window_config)
 {
-    if (!(window_config->mlx_ptr = mlx_init()))
-        return (put_error_msg("Error: MLX init error\n"));
     if (!(window_config->win_ptr = mlx_new_window(window_config->mlx_ptr,
     window_config->window_width, window_config->window_height, "cub3D")))
         return (put_error_msg("Error: Can't create new window\n"));
