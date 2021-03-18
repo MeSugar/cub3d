@@ -1,9 +1,8 @@
     R 1000 1000
-    NO ./pics/eagle.png
-    NO ./pics/eagle.png
-SO ./pics/greystone.png
-WE ./pics/purplestone.png
-EA ./pics/redbrick.png
+    NO ./textures/eagle.xpm
+SO ./textures/brick.xpm
+WE ./textures/chalice.xpm
+EA ./textures/wood.xpm
 S ./barrel.png
 
 C 225,   30, 0   
