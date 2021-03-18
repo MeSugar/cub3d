@@ -28,9 +28,17 @@ static void clear(t_win *window_config)
 int draw_screen(t_win *window_config)
 {
     int rays;
-    int buf[window_config->window_height][window_config->window_width];
+    int i;
 
-    window_config->buff = buf;
+    if(!(window_config->buff = ft_calloc(window_config->window_height, sizeof(char *))))
+        return (put_error_msg("Error: Malloc error\n"));
+    i = 0;
+    while (i < window_config->window_width)
+    {
+        if(!(window_config->buff[i] = ft_calloc(window_config->window_width, sizeof(char))))
+            return (put_error_msg("Error: Malloc error\n"));
+        i++;
+    }
 
     rays = -1;
     clear(window_config);
@@ -38,7 +46,7 @@ int draw_screen(t_win *window_config)
         return (put_error_msg("Error: Malloc error\n"));
     while (++rays < window_config->window_width)
         raycast(window_config, rays);
-    draw_image(window_config, rays);
+    // draw_image(window_config, rays);
     draw_map(window_config, window_config->buff);
     mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
     free(window_config->ray);
