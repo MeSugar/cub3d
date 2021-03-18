@@ -49,26 +49,32 @@ int draw_image(t_win *window_config, int rays)
     int y;
     int color;
     
+
     if (window_config->ray->side == 0)
 		wallx = window_config->player->py + window_config->ray->wall_dist * window_config->ray->rdy;
 	else
         wallx = window_config->player->px + window_config->ray->wall_dist * window_config->ray->rdx;
 	wallx -= floor(wallx);
+
+
     texx = (int)(wallx * (double)window_config->no->width);
 	if (window_config->ray->side == 0 && window_config->ray->rdx > 0)
 		texx = window_config->no->width - texx - 1;
 	if (window_config->ray->side == 1 && window_config->ray->rdy < 0)
 		texx = window_config->no->width - texx - 1;
+
+
     step = 1.0 * window_config->no->height / window_config->ray->wall_height;
     texpos = (window_config->ray->draw_start - window_config->window_height / 2 + window_config->ray->wall_height / 2) * step;
+    
+    
     y = window_config->ray->draw_start;
     while (y < window_config->ray->draw_end)
     {
         texy = (int)texpos & (window_config->no->height - 1);
         texpos += step;
-        color = (unsigned int)(*(window_config->no->addr + (texy * window_config->no->line_length + texx * (window_config->no->bpp / 8))));
-        window_config->buf[y][rays] = color;
-        // printf("color %d\n", screen_buf[y][rays]);
+        color = (unsigned int)(*(window_config->no->addr + (texy * window_config->no->height + texx * (window_config->no->bpp / 8))));
+        window_config->buff[y][rays] = color;
         y++;
     }
     // draw_map(window_config, screen_buf);

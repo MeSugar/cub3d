@@ -104,7 +104,7 @@ typedef struct  s_win
     t_image *we;
     t_image *ea;
     t_image *sprite;
-    char **buf;
+    char **buff;
 }               t_win;
 
 // Inits
