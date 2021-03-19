@@ -29,17 +29,16 @@ int draw_screen(t_win *window_config)
 {
     int rays;
     int i;
-
-    if(!(window_config->buff = ft_calloc(window_config->window_height, sizeof(char *))))
+    
+    if(!(window_config->buff = ft_calloc(window_config->window_height + 1, sizeof(int *))))
         return (put_error_msg("Error: Malloc error\n"));
     i = 0;
     while (i < window_config->window_width)
     {
-        if(!(window_config->buff[i] = ft_calloc(window_config->window_width, sizeof(char))))
+        if(!(window_config->buff[i] = ft_calloc((window_config->window_width + 1), sizeof(int))))
             return (put_error_msg("Error: Malloc error\n"));
         i++;
     }
-
     rays = -1;
     clear(window_config);
     if (!(window_config->ray = calloc(1, sizeof(t_ray))))

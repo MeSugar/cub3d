@@ -30,20 +30,30 @@ void draw_map(t_win *window_config, char **buff)
 {
     int x = 0;
     int y = 0;
-    
-    while (buff[x])
+    int i = 0;
+    int j = 0;
+    while (buff[y])
     {
-        y = 0;
-        while (buff[y][x])
+        x = 0;
+        i = 0;
+        while (x < window_config->window_width)
         {
-            if (!buff[y][x])
+            if (buff[y][x] == 0)
+            {
                 x++;
-            else 
-                pixel_put(window_config->image, y, x, buff[y][x]);
-            y++;
+                i++;
+            }
+            else
+            {
+                pixel_put(window_config->image, i, j, buff[y][x]);
+                x++;
+                i++;
+            }
         }
-        x++;
+        y++;
+        j++;
     }
+    i = 0;
 }
 
 int draw_image(t_win *window_config, int rays)
@@ -64,23 +74,23 @@ int draw_image(t_win *window_config, int rays)
 	wallx -= floor(wallx);
 
 
-    texx = (int)(wallx * (double)window_config->no->width);
+    texx = (int)(wallx * (double)window_config->so->width);
 	if (window_config->ray->side == 0 && window_config->ray->rdx > 0)
-		texx = window_config->no->width - texx - 1;
+		texx = window_config->so->width - texx - 1;
 	if (window_config->ray->side == 1 && window_config->ray->rdy < 0)
-		texx = window_config->no->width - texx - 1;
+		texx = window_config->so->width - texx - 1;
 
 
-    step = 1.0 * window_config->no->height / window_config->ray->wall_height;
+    step = 1.0 * window_config->so->height / window_config->ray->wall_height;
     texpos = (window_config->ray->draw_start - window_config->window_height / 2 + window_config->ray->wall_height / 2) * step;
     
     
     y = window_config->ray->draw_start;
     while (y < window_config->ray->draw_end)
     {
-        texy = (int)texpos & (window_config->no->height - 1);
+        texy = (int)texpos & (window_config->so->height - 1);
         texpos += step;
-        color = (unsigned int)(*(window_config->no->addr + (texy * window_config->no->height + texx * (window_config->no->bpp / 8))));
+        color = (unsigned int)(*(window_config->so->addr + (texy * window_config->so->line_length + texx * (window_config->so->bpp / 8))));
         window_config->buff[y][rays] = color;
         y++;
     }
