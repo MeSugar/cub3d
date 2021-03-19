@@ -136,8 +136,8 @@ void set_ray(t_win *window_config, int rays);
 void set_side_dist(t_win *window_config);
 void find_wall(t_win *window_config);
 void calculate_wall_dist_n_height(t_win *window_config);
-// void draw_map(t_win *window_config, int rays);
-void draw_map(t_win *window_config, char **buff);
+void draw_map(t_win *window_config, int rays);
+// void draw_map(t_win *window_config, char **buff);
 
 // Buttons
 void close_window(t_win *window_config);
