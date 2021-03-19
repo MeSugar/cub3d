@@ -32,23 +32,33 @@ void draw_map(t_win *window_config, char **buff)
     int y = 0;
     int i = 0;
     int j = 0;
+    // while (y < window_config->window_height)
+    // {
+    //     x = 0;
+    //     while (x < window_config->window_width)
+    //     {
+    //         printf("color %u, ", buff[y][x]);
+    //         x++;
+    //     }
+    //     y++;
+    // }
     while (buff[y])
     {
         x = 0;
         i = 0;
         while (x < window_config->window_width)
         {
-            if (buff[y][x] == 0)
-            {
-                x++;
-                i++;
-            }
-            else
-            {
+            // if (buff[y][x] == 0)
+            // {
+            //     x++;
+            //     i++;
+            // }
+            // else
+            // {
                 pixel_put(window_config->image, i, j, buff[y][x]);
                 x++;
                 i++;
-            }
+            // }
         }
         y++;
         j++;
@@ -64,7 +74,7 @@ int draw_image(t_win *window_config, int rays)
     double step;
     double texpos;
     int y;
-    int color;
+    unsigned int color;
     
 
     if (window_config->ray->side == 0)
@@ -90,7 +100,7 @@ int draw_image(t_win *window_config, int rays)
     {
         texy = (int)texpos & (window_config->so->height - 1);
         texpos += step;
-        color = (unsigned int)(*(window_config->so->addr + (texy * window_config->so->line_length + texx * (window_config->so->bpp / 8))));
+        color = *(unsigned int*)(window_config->so->addr + (texy * window_config->so->line_length + texx * (window_config->so->bpp / 8)));
         window_config->buff[y][rays] = color;
         y++;
     }
