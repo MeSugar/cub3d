@@ -20,6 +20,19 @@
 # include <math.h>
 # include <stdio.h>
 
+typedef struct s_sprite_pos
+{
+    int x;
+    int y;
+}              t_sprite_pos;
+
+typedef struct s_sprite
+{
+    char **sprites_pos;
+    int sprites_number;
+}              t_sprite;
+
+
 typedef struct s_ray
 {
     int     mapx;
@@ -99,17 +112,18 @@ typedef struct  s_win
     t_image *image;
     t_buttons  *buttons;
     t_ray *ray;
-    t_image *no;
-    t_image *so;
-    t_image *we;
-    t_image *ea;
-    t_image *sprite;
-    char **buff;
+    t_image *no_tex;
+    t_image *so_tex;
+    t_image *we_tex;
+    t_image *ea_tex;
+    t_image *sprite_tex;
+    t_sprite *sprite;
+    char *buff;
 }               t_win;
 
 // Inits
 t_win   *window_config_init(const char *config_file);
-int     map_player_buttons_init(t_win *window_config);
+int     map_player_buttons_sprite_init(t_win *window_config);
 int     window_init(t_win *window_config);
 int     image_init(t_win *window_config);
 int     texture_init(t_win *window_config);
@@ -123,6 +137,9 @@ int     config_parser(t_win *window_config);
 int     get_next_line(int fd, char **line);
 void    whitespace_skip(int *i, char *line);
 int     map_treat(t_win *window_config, char *line, int i);
+int     map_save(t_win *window_config, int size);
+int     map_format_check(char **map, t_win *window_config);
+int     sprite_save(t_win *window_config, char **map)
 int     resolution_treat(t_win *window_config, char *line, int i);
 int     color_treat(t_win *window_config, char *line, int i);
 int     texture_treat(t_win *window_config, char *line, int i);

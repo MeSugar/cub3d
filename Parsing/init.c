@@ -18,13 +18,15 @@ t_win *window_config_init(const char *config_file)
     return (new_config);
 }
 
-int map_player_buttons_init(t_win *window_config)
+int map_player_buttons_sprite_init(t_win *window_config)
 {
     if (!(window_config->map = ft_calloc(1, sizeof(t_map))))
         return (put_error_msg("Error: Malloc error\n"));
     if (!(window_config->player = ft_calloc(1, sizeof(t_player))))
         return (put_error_msg("Error: Malloc error\n"));
     if (!(window_config->buttons = ft_calloc(1, sizeof(t_buttons))))
+        return (put_error_msg("Error: Malloc error\n"));
+    if (!(window_config->sprite = ft_calloc(1, sizeof(t_sprite))))
         return (put_error_msg("Error: Malloc error\n"));
     return (1);
 }
