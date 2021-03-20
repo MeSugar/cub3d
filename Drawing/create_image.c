@@ -66,6 +66,20 @@ void pixel_put(t_image *image, int x, int y, int color)
 //     i = 0;
 // }
 
+static void ceiling_and_floor(t_win *window_config, int rays)
+{
+    int y;
+    int x;
+
+    y = -1;
+    x = rays;
+    while (++y < window_config->ray->draw_end)
+        pixel_put(window_config->image, rays, y, window_config->ceiling_color);
+    y = window_config->window_height + 1;
+    while(--y > window_config->ray->draw_start)
+        pixel_put(window_config->image, rays, y, window_config->floor_color);
+}
+
 int create_image(t_win *window_config, int rays)
 {
     double wallx;
@@ -112,6 +126,7 @@ int create_image(t_win *window_config, int rays)
         pixel_put(window_config->image, rays, y, color);
         y++;
     }
+    ceiling_and_floor(window_config, rays);
 //     // draw_map(window_config, rays);
     return (1);
 }
