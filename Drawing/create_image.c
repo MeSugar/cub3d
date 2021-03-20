@@ -66,7 +66,7 @@ void pixel_put(t_image *image, int x, int y, int color)
 //     i = 0;
 // }
 
-int draw_image(t_win *window_config, int rays)
+int create_image(t_win *window_config, int rays)
 {
     double wallx;
     int    texx;
@@ -75,32 +75,39 @@ int draw_image(t_win *window_config, int rays)
     double texpos;
     int y;
     unsigned int color;
+    t_image *texture;
     
 
-    if (window_config->ray->side == 0)
+    if (window_config->ray->side == 0 || window_config->ray->side == 1)
 		wallx = window_config->player->py + window_config->ray->wall_dist * window_config->ray->rdy;
 	else
         wallx = window_config->player->px + window_config->ray->wall_dist * window_config->ray->rdx;
 	wallx -= floor(wallx);
+    if (window_config->ray->side == 0)
+        texture = window_config->we;
+    if (window_config->ray->side == 1)
+        texture = window_config->ea;
+    if (window_config->ray->side == 2)
+        texture = window_config->no;
+    if (window_config->ray->side == 3)
+        texture = window_config->so;
+    texx = (int)(wallx * (double)texture->width);
+	if ((window_config->ray->side == 0 || window_config->ray->side == 1) && window_config->ray->rdx > 0)
+		texx = texture->width - texx - 1;
+	if ((window_config->ray->side == 2 || window_config->ray->side == 3) && window_config->ray->rdy < 0)
+		texx = texture->width - texx - 1;
 
 
-    texx = (int)(wallx * (double)window_config->no->width);
-	if (window_config->ray->side == 0 && window_config->ray->rdx > 0)
-		texx = window_config->no->width - texx - 1;
-	if (window_config->ray->side == 1 && window_config->ray->rdy < 0)
-		texx = window_config->no->width - texx - 1;
-
-
-    step = 1.0 * window_config->no->height / window_config->ray->wall_height;
+    step = 1.0 * texture->height / window_config->ray->wall_height;
     texpos = (window_config->ray->draw_start - window_config->window_height / 2 + window_config->ray->wall_height / 2) * step;
     
     
     y = window_config->ray->draw_start;
     while (y < window_config->ray->draw_end)
     {
-        texy = (int)texpos & (window_config->no->height - 1);
+        texy = (int)texpos & (texture->height - 1);
         texpos += step;
-        color = *(unsigned int*)(window_config->no->addr + (texy * window_config->no->line_length + texx * (window_config->no->bpp / 8)));
+        color = *(unsigned int*)(texture->addr + (texy * texture->line_length + texx * (texture->bpp / 8)));
         // window_config->buff[y][rays] = color;
         pixel_put(window_config->image, rays, y, color);
         y++;
