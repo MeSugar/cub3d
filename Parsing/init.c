@@ -54,15 +54,15 @@ int image_init(t_win *window_config)
 
 int     texture_init(t_win *window_config)
 {
-    if (!(window_config->no = ft_calloc(1, sizeof(t_image))))
+    if (!(window_config->no_tex = ft_calloc(1, sizeof(t_image))))
         return (put_error_msg("Error: Malloc error\n"));
-    if (!(window_config->so = ft_calloc(1, sizeof(t_image))))
+    if (!(window_config->so_tex = ft_calloc(1, sizeof(t_image))))
         return (put_error_msg("Error: Malloc error\n"));
-    if (!(window_config->we = ft_calloc(1, sizeof(t_image))))
+    if (!(window_config->we_tex = ft_calloc(1, sizeof(t_image))))
         return (put_error_msg("Error: Malloc error\n"));
-    if (!(window_config->ea = ft_calloc(1, sizeof(t_image))))
+    if (!(window_config->ea_tex = ft_calloc(1, sizeof(t_image))))
         return (put_error_msg("Error: Malloc error\n"));
-    if (!(window_config->sprite = ft_calloc(1, sizeof(t_image))))
+    if (!(window_config->sprite_tex = ft_calloc(1, sizeof(t_image))))
         return (put_error_msg("Error: Malloc error\n"));
     return (1);
 }

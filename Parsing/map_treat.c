@@ -4,42 +4,36 @@ int sprite_save(t_win *window_config, char **map)
 {
     int y;
     int x;
-    int i;
     int j;
     char **buf;
-
+    
+    if (!window_config->sprite->sprites_number)
+        return (1);
     if (!(buf = ft_calloc(window_config->sprite->sprites_number + 1, sizeof(double *))))
         return (put_error_msg("Error: Malloc error"));
-    // y = -1;
-    // while (++y < window_config->sprite->sprites_number)
-    // {
-    //     if (!(buf = ft_calloc(2, sizeof(double *))))
-    //         return (put_error_msg("Error: Malloc error"));
-    // }
+    y = -1;
+    while (++y < window_config->sprite->sprites_number)
+    {
+        if (!(buf[y] = ft_calloc(2, sizeof(double *))))
+            return (put_error_msg("Error: Malloc error"));
+    }
     y = -1;
     j = 0;
-    i = 0;
     while (map[++y])
     {
         x = -1;
-        while (map[y][++x])
+        while (map[y][++x] && window_config->sprite->sprites_number)
         {
             if (map[y][x] == '2')
             {
-                buf[j][i] = y;
-                buf[j][i + 1] = x;
+                buf[j][0] = y;
+                buf[j][1] = x;
                 j++;
+                window_config->sprite->sprites_number--;
             }
         }
     }
     window_config->sprite->sprites_pos = buf;
-    j = -1;
-    while (buf[++j])
-    {
-        i = -1;
-        while (buf[j][++i])
-            printf("pos %d\n", buf[j][i]);
-    }
     return (1);
 }
 

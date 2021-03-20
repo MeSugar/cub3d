@@ -98,13 +98,13 @@ int create_image(t_win *window_config, int rays)
         wallx = window_config->player->px + window_config->ray->wall_dist * window_config->ray->rdx;
 	wallx -= floor(wallx);
     if (window_config->ray->side == 0)
-        texture = window_config->ea;
+        texture = window_config->ea_tex;
     if (window_config->ray->side == 1)
-        texture = window_config->we;
+        texture = window_config->we_tex;
     if (window_config->ray->side == 2)
-        texture = window_config->so;
+        texture = window_config->so_tex;
     if (window_config->ray->side == 3)
-        texture = window_config->no;
+        texture = window_config->no_tex;
     texx = (int)(wallx * (double)texture->width);
 	if ((window_config->ray->side == 0 || window_config->ray->side == 1) && window_config->ray->rdx > 0)
 		texx = texture->width - texx - 1;

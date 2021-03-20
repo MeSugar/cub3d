@@ -139,7 +139,7 @@ void    whitespace_skip(int *i, char *line);
 int     map_treat(t_win *window_config, char *line, int i);
 int     map_save(t_win *window_config, int size);
 int     map_format_check(char **map, t_win *window_config);
-int     sprite_save(t_win *window_config, char **map)
+int     sprite_save(t_win *window_config, char **map);
 int     resolution_treat(t_win *window_config, char *line, int i);
 int     color_treat(t_win *window_config, char *line, int i);
 int     texture_treat(t_win *window_config, char *line, int i);
