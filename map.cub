@@ -5,9 +5,9 @@ WE ./textures/blue.xpm
 EA ./textures/wood.xpm
 S ./textures/barrel.xpm
 
-C 225,   30, 0   
+C 0, 110, 200   
 
- F 220, 100, 2     
+ F 220, 150, 50     
 
 
         1111  1111111111111111111111

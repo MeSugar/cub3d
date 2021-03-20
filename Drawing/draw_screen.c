@@ -9,28 +9,28 @@ static void raycast(t_win *window_config, int rays)
     create_image(window_config, rays);
 }
 
-static void clear(t_win *window_config)
-{
-    int x = 0;
-    int y;
-    while (x < window_config->window_width)
-        {
-            y = 0;
-            while (y < window_config->window_height)
-            {
-                pixel_put(window_config->image, x, y, 0x00000000);
-                y++;
-            }
-            x++;
-        }
-}
+// static void clear(t_win *window_config)
+// {
+//     int x = 0;
+//     int y;
+//     while (x < window_config->window_width)
+//         {
+//             y = 0;
+//             while (y < window_config->window_height)
+//             {
+//                 pixel_put(window_config->image, x, y, 0x00000000);
+//                 y++;
+//             }
+//             x++;
+//         }
+// }
 
 int draw_screen(t_win *window_config)
 {
     int rays;
 
     rays = -1;
-    clear(window_config);
+    // clear(window_config);
     if (!(window_config->ray = calloc(1, sizeof(t_ray))))
         return (put_error_msg("Error: Malloc error\n"));
     while (++rays < window_config->window_width)

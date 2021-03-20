@@ -73,10 +73,10 @@ static void ceiling_and_floor(t_win *window_config, int rays)
 
     y = -1;
     x = rays;
-    while (++y < window_config->ray->draw_end)
+    while (++y < window_config->ray->draw_start)
         pixel_put(window_config->image, rays, y, window_config->ceiling_color);
     y = window_config->window_height + 1;
-    while(--y > window_config->ray->draw_start)
+    while(--y > window_config->ray->draw_end)
         pixel_put(window_config->image, rays, y, window_config->floor_color);
 }
 
