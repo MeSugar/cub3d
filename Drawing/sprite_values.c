@@ -2,8 +2,8 @@
 
 void set_sprite(t_win *window_config, t_player *player, t_sprite *sprite, int i)
 {
-    sprite->spritex =  sprite->sprites_pos[i][1] - player->px;
-    sprite->spritey =  sprite->sprites_pos[i][0] - player->py;
+    sprite->spritex =  sprite->sprites_pos[i][1] - player->px + 0.5;
+    sprite->spritey =  sprite->sprites_pos[i][0] - player->py + 0.5;
 
     sprite->invdet = 1.0 / (player->planex * player->pdy - player->pdx * player->planey);
     sprite->transformx = sprite->invdet * (player->pdy * sprite->spritex - player->pdx * sprite->spritey);

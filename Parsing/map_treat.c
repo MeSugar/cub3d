@@ -29,8 +29,8 @@ int sprite_save(t_win *window_config, char **map)
         {
             if (map[y][x] == '2')
             {
-                buf[j][0] = (double)(y + 0.5);
-                buf[j][1] = (double)(x + 0.5);
+                buf[j][0] = (double)y;
+                buf[j][1] = (double)x;
                 j++;
                 sprites--;
             }
