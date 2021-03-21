@@ -44,5 +44,6 @@ int draw_screen(t_win *window_config)
     // draw_map(window_config, window_config->buff);
     mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
     free(window_config->ray);
+    free(window_config->buff);
     return (1);
 }
