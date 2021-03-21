@@ -3,7 +3,7 @@
 SO ./textures/brick.xpm
 WE ./textures/blue.xpm
 EA ./textures/wood.xpm
-S ./textures/chalice.xpm
+S ./textures/eye.xpm
 
 C 0, 110, 200   
 
