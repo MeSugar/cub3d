@@ -141,7 +141,8 @@ int     texture_init(t_win *window_config);
 // Error management
 int name_check(char *av, char *cub);
 int put_error_msg(char *error_message);
-void finish_program(t_win *window_config, int mode);
+int finish_program(t_win *window_config, int mode);
+int kill_window(t_win *window_config);
 
 // Parsing
 int     config_parser(t_win *window_config);
