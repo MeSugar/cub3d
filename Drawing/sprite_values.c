@@ -25,5 +25,5 @@ void set_sprite(t_win *window_config, t_player *player, t_sprite *sprite, int i)
 	sprite->draw_endx = sprite->width / 2 + sprite->sprite_screenx;
 	if (sprite->draw_endx >= window_config->window_width)
 		sprite->draw_endx = window_config->window_width - 1;
-	sprite->ver_line = sprite->draw_startx;   
+	sprite->ver_line = sprite->draw_startx - 1;   
 }

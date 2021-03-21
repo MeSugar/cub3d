@@ -33,9 +33,8 @@ static void draw_sprite(t_win *window_config, int sprites)
     unsigned int color;
 
     set_sprite(window_config, window_config->player, window_config->sprite, sprites);
-    window_config->sprite->ver_line = window_config->sprite->draw_startx - 1;
     while (++window_config->sprite->ver_line < window_config->sprite->draw_endx)
-	{
+	{   
 		window_config->sprite->texx = (int)(window_config->sprite_tex->line_length * (window_config->sprite->ver_line - 
         (-window_config->sprite->width / 2 + window_config->sprite->sprite_screenx)) * window_config->sprite_tex->width / window_config->sprite->width) / 
         window_config->sprite_tex->line_length;
@@ -47,10 +46,10 @@ static void draw_sprite(t_win *window_config, int sprites)
 			while (++y < window_config->sprite->draw_endy)
 			{
                 d = y * window_config->sprite_tex->line_length - window_config->window_height * (window_config->sprite_tex->line_length / 2) +
-                window_config->sprite->height * (window_config->sprite_tex->line_length / 2);
+                window_config->sprite->height * window_config->sprite_tex->line_length / 2;
                 window_config->sprite->texy = ((d * window_config->sprite_tex->height) / window_config->sprite->height) / window_config->sprite_tex->line_length;
                 color = *(unsigned int*)(window_config->sprite_tex->addr + (window_config->sprite->texy * window_config->sprite_tex->line_length +
-                window_config->sprite->texy * (window_config->sprite_tex->bpp / 8)));
+                window_config->sprite->texx * (window_config->sprite_tex->bpp / 8)));
                 if ((color & 0x00FFFFFF) != 0)
                     pixel_put(window_config->image, window_config->sprite->ver_line, y, color);
 			}
