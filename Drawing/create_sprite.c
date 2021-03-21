@@ -34,8 +34,8 @@ static void draw_sprite(t_win *window_config, int sprites)
     unsigned int color;
 
     set_sprite(window_config, window_config->player, window_config->sprite, sprites);
-    y = window_config->sprite->ver_line - 1;
-    while (++y < window_config->sprite->draw_endx)
+    window_config->sprite->ver_line = window_config->sprite->draw_startx - 1;
+    while (++window_config->sprite->ver_line < window_config->sprite->draw_endx)
 	{
 		window_config->sprite->texx = (int)(window_config->sprite_tex->line_length * (window_config->sprite->ver_line - 
         (-window_config->sprite->width / 2 + window_config->sprite->sprite_screenx)) * window_config->sprite_tex->width / window_config->sprite->width) / 
