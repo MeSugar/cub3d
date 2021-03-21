@@ -50,12 +50,9 @@ static void draw_sprite(t_win *window_config, int sprites)
                 window_config->sprite->texy = ((d * window_config->sprite_tex->height) / window_config->sprite->height) / window_config->sprite_tex->line_length;
                 color = *(unsigned int*)(window_config->sprite_tex->addr + (window_config->sprite->texy * window_config->sprite_tex->line_length +
                 window_config->sprite->texx * (window_config->sprite_tex->bpp / 8)));
-                if (color != 0)
+                if ((color & 0x00FFFFFF) != 0)
                     pixel_put(window_config->image, window_config->sprite->ver_line, y, color);
-                // else
-                //     pixel_put(window_config->image, window_config->sprite->ver_line, y, color);
-                
-                
+
 			}
 		}
 	}
