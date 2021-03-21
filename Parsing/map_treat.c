@@ -9,7 +9,7 @@ int sprite_save(t_win *window_config, char **map)
     
     if (!window_config->sprite->sprites_number)
         return (1);
-    if (!(buf = ft_calloc(window_config->sprite->sprites_number + 1, sizeof(double *))))
+    if (!(buf = ft_calloc(window_config->sprite->sprites_number, sizeof(double *))))
         return (put_error_msg("Error: Malloc error"));
     y = -1;
     while (++y < window_config->sprite->sprites_number)
@@ -26,8 +26,8 @@ int sprite_save(t_win *window_config, char **map)
         {
             if (map[y][x] == '2')
             {
-                buf[j][0] = y;
-                buf[j][1] = x;
+                buf[j][0] = (double)(y + 0.5);
+                buf[j][1] = (double)(x + 0.5);
                 j++;
                 window_config->sprite->sprites_number--;
             }
@@ -76,7 +76,7 @@ int map_treat(t_win *window_config, char *line, int i)
         else if ((line[i] == 'N' || line[i] == 'E' || line[i] == 'S' || line[i] == 'W'))
         {
             window_config->player->px = (double)(i + 0.5);
-            window_config->player->py = (double)(window_config->map->height - 0.5);
+            window_config->player->py = (double)(window_config->map->height + 0.5);
             window_config->player->players_number++;
             window_config->player->direction = line[i];
             line[i] = '0';

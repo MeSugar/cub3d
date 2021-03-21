@@ -80,7 +80,7 @@ static void ceiling_and_floor(t_win *window_config, int rays)
         pixel_put(window_config->image, rays, y, window_config->floor_color);
 }
 
-int create_image(t_win *window_config, int rays)
+void create_image(t_win *window_config, int rays)
 {
     double wallx;
     int    texx;
@@ -115,7 +115,7 @@ int create_image(t_win *window_config, int rays)
     step = 1.0 * texture->height / window_config->ray->wall_height;
     texpos = (window_config->ray->draw_start - window_config->window_height / 2 + window_config->ray->wall_height / 2) * step;
     
-    
+    ceiling_and_floor(window_config, rays);
     y = window_config->ray->draw_start;
     while (y < window_config->ray->draw_end)
     {
@@ -126,7 +126,7 @@ int create_image(t_win *window_config, int rays)
         pixel_put(window_config->image, rays, y, color);
         y++;
     }
-    ceiling_and_floor(window_config, rays);
+    // ceiling_and_floor(window_config, rays);
 //     // draw_map(window_config, rays);
     return (1);
 }

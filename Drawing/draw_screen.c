@@ -6,6 +6,7 @@ static void raycast(t_win *window_config, int rays)
     set_side_dist(window_config);
     find_wall(window_config);
     calculate_wall_dist_n_height(window_config);
+    window_config->buff[rays] = window_config->ray->wall_dist;
     create_image(window_config, rays);
 }
 
@@ -29,12 +30,16 @@ int draw_screen(t_win *window_config)
 {
     int rays;
 
-    rays = -1;
+    
     // clear(window_config);
-    if (!(window_config->ray = calloc(1, sizeof(t_ray))))
+    if (!(window_config->ray = ft_calloc(1, sizeof(t_ray))))
         return (put_error_msg("Error: Malloc error\n"));
+    if (!(window_config->buff = ft_calloc(window_config->window_width, sizeof(double))))
+		return (put_error_msg("Error: Malloc error\n"));
+    rays = -1;
     while (++rays < window_config->window_width)
         raycast(window_config, rays);
+    create_sprite(window_config);
     // draw_image(window_config, rays);
     // draw_map(window_config, window_config->buff);
     mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);

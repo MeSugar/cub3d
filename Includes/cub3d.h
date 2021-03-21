@@ -20,16 +20,26 @@
 # include <math.h>
 # include <stdio.h>
 
-typedef struct s_sprite_pos
-{
-    int x;
-    int y;
-}              t_sprite_pos;
 
 typedef struct s_sprite
 {
     char **sprites_pos;
     int sprites_number;
+    double spritex;
+    double spritey;
+    double invdet;
+    double transformx;
+    double transformy;
+    int sprite_screenx;
+    int height;
+    int width;
+    int draw_starty;
+    int draw_endy;
+    int draw_startx;
+    int draw_endx;
+    int ver_line;
+    int texx;
+    int texy;
 }              t_sprite;
 
 
@@ -118,7 +128,7 @@ typedef struct  s_win
     t_image *ea_tex;
     t_image *sprite_tex;
     t_sprite *sprite;
-    char *buff;
+    double *buff;
 }               t_win;
 
 // Inits
@@ -148,13 +158,18 @@ int     texture_treat(t_win *window_config, char *line, int i);
 void pixel_put(t_image *image, int x, int y, int color);
 int main_loop(t_win *window_config);
 int draw_screen(t_win *window_config);
-int create_image(t_win *window_config, int rays);
+void create_image(t_win *window_config, int rays);
 void set_ray(t_win *window_config, int rays);
 void set_side_dist(t_win *window_config);
 void find_wall(t_win *window_config);
 void calculate_wall_dist_n_height(t_win *window_config);
 // void draw_map(t_win *window_config, int rays);
 // void draw_map(t_win *window_config, char **buff);
+
+// Sprites
+int create_sprite(t_win* window_config);
+void set_sprite(t_win *window_config, t_player *player, t_sprite *sprite, int i);
+
 
 // Buttons
 void close_window(t_win *window_config);
