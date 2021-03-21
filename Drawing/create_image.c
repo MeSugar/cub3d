@@ -80,7 +80,7 @@ static void ceiling_and_floor(t_win *window_config, int rays)
         pixel_put(window_config->image, rays, y, window_config->floor_color);
 }
 
-void create_image(t_win *window_config, int rays)
+int create_image(t_win *window_config, int rays)
 {
     double wallx;
     int    texx;

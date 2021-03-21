@@ -29,7 +29,6 @@ static void sort_sprites(t_win *window_config)
 static void draw_sprite(t_win *window_config, int sprites)
 {
     int y;
-    int h;
     int d;
     unsigned int color;
 
@@ -44,16 +43,16 @@ static void draw_sprite(t_win *window_config, int sprites)
 		if (window_config->sprite->transformy > 0 && window_config->sprite->ver_line > 0 && window_config->sprite->ver_line < window_config->window_width 
         && window_config->sprite->transformy < window_config->buff[window_config->sprite->ver_line])
 		{
-			h = window_config->sprite->draw_starty - 1;
-			while (++h < window_config->sprite->draw_endy)
+			y = window_config->sprite->draw_starty - 1;
+			while (++y < window_config->sprite->draw_endy)
 			{
-                d = h * window_config->sprite_tex->line_length - window_config->window_height * (window_config->sprite_tex->line_length / 2) +
+                d = y * window_config->sprite_tex->line_length - window_config->window_height * (window_config->sprite_tex->line_length / 2) +
                 window_config->sprite->height * (window_config->sprite_tex->line_length / 2);
                 window_config->sprite->texy = ((d * window_config->sprite_tex->height) / window_config->sprite->height) / window_config->sprite_tex->line_length;
                 color = *(unsigned int*)(window_config->sprite_tex->addr + (window_config->sprite->texy * window_config->sprite_tex->line_length +
                 window_config->sprite->texy * (window_config->sprite_tex->bpp / 8)));
-                if (color != 0)
-                    pixel_put(window_config->image, window_config->sprite->ver_line, h, color);
+                if ((color & 0x00FFFFFF) != 0)
+                    pixel_put(window_config->image, window_config->sprite->ver_line, y, color);
 			}
 		}
 	}
