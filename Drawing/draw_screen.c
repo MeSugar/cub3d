@@ -40,6 +40,8 @@ int draw_screen(t_win *window_config)
     while (++rays < window_config->window_width)
         raycast(window_config, rays);
     create_sprite(window_config);
+    if (window_config->save_mode)
+        create_bitmap(window_config, window_config->image);
     // draw_image(window_config, rays);
     // draw_map(window_config, window_config->buff);
     mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);

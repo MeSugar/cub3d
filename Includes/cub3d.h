@@ -116,6 +116,7 @@ typedef struct  s_win
     int     window_height;
     int     floor_color;
     int     ceiling_color;
+    int save_mode;
     t_map   *map;
     t_player *player;
     t_list  *mapp;
@@ -132,7 +133,7 @@ typedef struct  s_win
 }               t_win;
 
 // Inits
-t_win   *window_config_init(const char *config_file);
+t_win *window_config_init(const char *config_file, int save_mode);
 int     map_player_buttons_sprite_init(t_win *window_config);
 int     window_init(t_win *window_config);
 int     image_init(t_win *window_config);
@@ -167,6 +168,7 @@ void find_wall(t_win *window_config);
 void calculate_wall_dist_n_height(t_win *window_config);
 // void draw_map(t_win *window_config, int rays);
 // void draw_map(t_win *window_config, char **buff);
+int create_bitmap(t_win *window_config, t_image *image);
 
 // Sprites
 int create_sprite(t_win* window_config);

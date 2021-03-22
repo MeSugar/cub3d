@@ -1,0 +1,53 @@
+#include "cub3d.h"
+
+static void pixel_data_to_bmp(t_image *img, int fd)
+{
+    int row;
+    int x;
+    int i;
+    char	color;
+
+    row = img->line_length * (img->height - 1);
+
+	while (row >= 0)
+	{
+		x = 0;
+		while (x < img->line_length)
+		{
+            i = 5;
+			color = (char)(img->addr[row + img->bpp / 8]);
+			while (--i)
+            {
+                write(fd, (&color), 1);
+                color--;
+            }
+			x += img->bpp / 8;
+		}
+		row -= 2 * img->line_length;
+	}
+}
+
+int create_bitmap(t_win *window_config, t_image *image)
+{
+    int fd;
+    int empty_fields;
+
+    fd = open("cub3D.bmp", O_CREAT | O_RDWR);
+    write(fd, "BM", 2);
+    write(fd, image->width * image->height * 4 + 54, 4);
+    write(fd, "\0\0\0\0", 4);
+    write(fd, 54, 4);
+    write(fd, 40, 4);
+    write(fd, &image->width, 4);
+    write(fd, &image->height, 4);
+    write(fd, 1, 2);
+    write(fd, &image->bpp, 2);
+    empty_fields = 25;
+    while (--empty_fields)
+        write(fd, "\0", 1);
+    pixel_data_to_bmp(image, fd);
+    close(fd);
+    finish_program(window_config, 1);
+    exit (0);
+    return(1);
+}

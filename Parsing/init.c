@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-t_win *window_config_init(const char *config_file)
+t_win *window_config_init(const char *config_file, int save_mode)
 {
     t_win *new_config;
 
@@ -15,6 +15,8 @@ t_win *window_config_init(const char *config_file)
         put_error_msg("Error: MLX init error\n");
         return (0);
     }
+    if (save_mode)
+        new_config->save_mode = 1;
     return (new_config);
 }
 
