@@ -51,6 +51,8 @@ int image_init(t_win *window_config)
     if (!(window_config->image->addr = mlx_get_data_addr(window_config->image->img_ptr,
     &window_config->image->bpp, &window_config->image->line_length, &window_config->image->endian)))
         return (put_error_msg("Error: Can't get image data\n"));
+    window_config->image->height = window_config->window_height;
+    window_config->image->width = window_config->window_width;
     return (1);
 }
 

@@ -43,23 +43,25 @@ int sprite_save(t_win *window_config, char **map)
 int map_save(t_win *window_config, int size)
 {
     char **map;
-    t_list *tmp;
     int i;
 
     if (!(map = ft_calloc(size + 1, sizeof(char *))))
         return (put_error_msg("Error: Malloc error during saving the map"));
-    tmp = window_config->mapp;
-    if (window_config->map->map)
-        free(window_config->map->map);
     i = -1;
-    while (tmp)
+    while (window_config->mapp)
     {
         map[++i] = ft_calloc(window_config->map->width, sizeof(char));
-        ft_strlcpy(map[i], tmp->content, ft_strlen(tmp->content) + 1);
-        tmp = tmp->next;
+        ft_strlcpy(map[i], window_config->mapp->content, ft_strlen(window_config->mapp->content) + 1);
+        free(window_config->mapp);
+        window_config->mapp = window_config->mapp->next;
     }
+    free(window_config->mapp);
     map[i + 1] = 0;
     window_config->map->map = map;
+    if (!map_format_check(window_config->map->map, window_config))
+        return (0);
+    if (!set_player_direction(window_config))
+        return (0);
     return (1);
 }
 

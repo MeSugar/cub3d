@@ -2,21 +2,28 @@
 
 static int  resoluiton_fomat_check(char *line, int i)
 {
-    if (line[i] && !ft_isdigit(line[i]))
+    int sides;
+
+    sides = 0;
+    if (line[i] && ft_isdigit(line[i]))
+        sides++;
+    else
         return (put_error_msg("Error: Invalid resolution string\n"));
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (line[i] && line[i] != ' ')
-        return (put_error_msg("Error: Invalid resolution string\n"));
+    // if (line[i] && line[i] != ' ')
+    //     return (put_error_msg("Error: Invalid resolution string\n"));
     whitespace_skip(&i, line);
-    if (line[i] && !ft_isdigit(line[i]))
+    if (line[i] && ft_isdigit(line[i]))
+        sides++;
+    else
         return (put_error_msg("Error: Invalid resolution string\n"));
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (line[i] && line[i] != ' ')
-        return (put_error_msg("Error: Invalid resolution string\n"));
+    // if (line[i] && line[i] != ' ')
+    //     return (put_error_msg("Error: Invalid resolution string\n"));
     whitespace_skip(&i, line);
-    if (line[i])
+    if (line[i] || sides != 2)
         return (put_error_msg("Error: Invalid resolution string\n"));
     return (1);
 }

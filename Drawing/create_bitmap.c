@@ -4,8 +4,7 @@ static void pixel_data_to_bmp(t_image *img, int fd)
 {
     int row;
     int x;
-    int i;
-    char	color;
+    unsigned char buf[4];
 
     row = img->line_length * (img->height - 1);
 
@@ -13,16 +12,15 @@ static void pixel_data_to_bmp(t_image *img, int fd)
 	{
 		x = 0;
 		while (x < img->line_length)
-		{
-            i = 5;
-			color = (char)(img->addr[row + img->bpp / 8]);
-			while (--i)
-            {
-                write(fd, (&color), 1);
-                color--;
-            }
-			x += img->bpp / 8;
-		}
+		{   
+            buf[0] = (unsigned char)(img->addr[row]);
+            buf[1] = (unsigned char)(img->addr[row + 1]);
+            buf[2] = (unsigned char)(img->addr[row + 2]);
+            buf[3] = (unsigned char)(0);
+            write(fd, buf, 4);
+			x += 4;
+            row += 4;
+        }
 		row -= 2 * img->line_length;
 	}
 }
@@ -30,12 +28,13 @@ static void pixel_data_to_bmp(t_image *img, int fd)
 int create_bitmap(t_win *window_config, t_image *image)
 {
     int fd;
-    int empty_fields;
+    // int empty_fields;
     int file_size;
     int first_pix;
     int header_size;
     int plane;
     int image_size;
+
 
     file_size = image->width * image->height * 4 + 54;
     first_pix = 54;
@@ -55,7 +54,7 @@ int create_bitmap(t_win *window_config, t_image *image)
     // empty_fields = -1;
     // while (++empty_fields < 24)
     write(fd, "\0", 4);
-    write(fd, image_size, 4);
+    write(fd, &image_size, 4);
     write(fd, "\0", 16);
     pixel_data_to_bmp(image, fd);
     close(fd);

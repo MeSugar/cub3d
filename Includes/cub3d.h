@@ -112,8 +112,8 @@ typedef struct  s_win
     void    *mlx_ptr;
     void    *win_ptr;
     const char    *config_file;
-    int     window_width;
-    int     window_height;
+    long long     window_width;
+    long long     window_height;
     int     floor_color;
     int     ceiling_color;
     int save_mode;
@@ -152,10 +152,12 @@ void    whitespace_skip(int *i, char *line);
 int     map_treat(t_win *window_config, char *line, int i);
 int     map_save(t_win *window_config, int size);
 int     map_format_check(char **map, t_win *window_config);
+int set_player_direction(t_win *window_config);
 int     sprite_save(t_win *window_config, char **map);
 int     resolution_treat(t_win *window_config, char *line, int i);
 int     color_treat(t_win *window_config, char *line, int i);
 int     texture_treat(t_win *window_config, char *line, int i);
+int config_elements_check(t_win *window_config);
 
 // Drawing
 void pixel_put(t_image *image, int x, int y, int color);

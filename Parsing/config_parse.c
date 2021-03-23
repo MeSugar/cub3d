@@ -35,7 +35,7 @@ static void set_player_plane(t_win *window_config, double pdx, double pdy, doubl
     window_config->player->planey = planey;
 }
 
-static int set_player_direction(t_win *window_config)
+int set_player_direction(t_win *window_config)
 {
     if (window_config->player->players_number != 1)
         return (put_error_msg("Error: Invalid number of players\n"));
@@ -57,7 +57,7 @@ int config_parser(t_win *window_config)
     int rtn;
 
     line = 0;
-    if (!(fd = open(window_config->config_file, O_RDONLY)))
+    if ((fd = open(window_config->config_file, O_RDONLY)) == -1)
         return (put_error_msg("Error: Can't open config file\n"));
     while ((rtn = get_next_line(fd, &line)) != -1)
     {
@@ -67,20 +67,18 @@ int config_parser(t_win *window_config)
             break;
     }
     close (fd);
+    if (rtn == -1)
+        return (put_error_msg("Error: Can't read config file\n"));
+    if (!config_elements_check (window_config))
+        return (put_error_msg("Error: Wrong config elements\n"));
     if (!map_save(window_config, ft_lstsize(window_config->mapp)))
-        return (0);
-    if (!map_format_check(window_config->map->map, window_config))
-        return (0);
-    if (!set_player_direction(window_config))
         return (0);
     if (!sprite_save(window_config, window_config->map->map))
         return (0);
     fd = -1;
-    printf("%d\n", window_config->window_width);
-    printf("%d\n", window_config->window_height);
+    printf("%lld\n", window_config->window_width);
+    printf("%lld\n", window_config->window_height);
     while (window_config->map->map[++fd])
         ft_putendl_fd(window_config->map->map[fd], 1);
-    if (rtn == -1)
-            return (put_error_msg("Error: Can't read config file\n"));
     return (1);
 }

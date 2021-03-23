@@ -9,7 +9,7 @@ int name_check(char *av, char *cub)
     while(*av && *av != '.')
         av++;
     if (*av != '.' || !ft_strnstr(av, cub, 4))
-        return (put_error_msg("Error: Invalid file name\n"));
+        return (put_error_msg("Error: Invalid texture file name\n"));
     return (1);
 }
 
@@ -37,6 +37,7 @@ int main(int ac, char **av)
         || !image_init(window_config))
         // || !draw_screen(window_config))
             return (0);
+        loop(window_config);
     }
     else if (ac == 3)
     {
@@ -45,12 +46,11 @@ int main(int ac, char **av)
         || !texture_init(window_config)
         || !config_parser(window_config)
         || !window_init(window_config)
-        || !image_init(window_config))
-        // || !draw_screen(window_config))
+        || !image_init(window_config)
+        || !draw_screen(window_config))
             return (0);
     }
     else
         return (0);
-    loop(window_config);
 }
     
