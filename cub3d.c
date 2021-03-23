@@ -37,19 +37,20 @@ int main(int ac, char **av)
         || !image_init(window_config))
         // || !draw_screen(window_config))
             return (0);
-    if (ac == 3)
+    }
+    else if (ac == 3)
     {
         if (!(window_config = window_config_init(av[1], 1))
         || !map_player_buttons_sprite_init(window_config)
         || !texture_init(window_config)
         || !config_parser(window_config)
         || !window_init(window_config)
-        || !image_init(window_config)
-        || !draw_screen(window_config))
+        || !image_init(window_config))
+        // || !draw_screen(window_config))
             return (0);
-    finish_program(window_config, 1);
     }
+    else
+        return (0);
     loop(window_config);
-    }
-    
 }
+    
