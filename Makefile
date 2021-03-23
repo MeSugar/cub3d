@@ -14,7 +14,7 @@ MINILIB		=	./Minilib
 
 SRCS		=	cub3d.c Utils/get_next_line.c Utils/whitespace_skip.c Utils/error_msgs.c Utils/finish_program.c Parsing/config_parse.c Parsing/init.c Parsing/map_treat.c Parsing/texture_treat.c \
 				Parsing/resolution_treat.c Parsing/color_treat.c Drawing/create_image.c Drawing/main_loop.c Drawing/ray_values.c Drawing/create_sprite.c Drawing/sprite_values.c \
-				Drawing/draw_screen.c Buttons/buttons.c Buttons/movements.c Buttons/turns.c
+				Drawing/draw_screen.c Drawing/create_bitmap.c Buttons/buttons.c Buttons/movements.c Buttons/turns.c
 
 all : $(NAME)
 

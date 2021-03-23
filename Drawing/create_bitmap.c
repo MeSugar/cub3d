@@ -31,16 +31,24 @@ int create_bitmap(t_win *window_config, t_image *image)
 {
     int fd;
     int empty_fields;
+    int file_size;
+    int first_pix;
+    int header_size;
+    int plane;
 
+    file_size = image->width * image->height * 4 + 54;
+    first_pix = 54;
+    header_size = 40;
+    plane = 1;
     fd = open("cub3D.bmp", O_CREAT | O_RDWR);
     write(fd, "BM", 2);
-    write(fd, image->width * image->height * 4 + 54, 4);
+    write(fd, &file_size, 4);
     write(fd, "\0\0\0\0", 4);
-    write(fd, 54, 4);
-    write(fd, 40, 4);
+    write(fd, &first_pix, 4);
+    write(fd, &header_size, 4);
     write(fd, &image->width, 4);
     write(fd, &image->height, 4);
-    write(fd, 1, 2);
+    write(fd, &plane, 2);
     write(fd, &image->bpp, 2);
     empty_fields = 25;
     while (--empty_fields)
