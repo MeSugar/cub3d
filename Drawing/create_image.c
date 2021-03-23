@@ -122,7 +122,8 @@ int create_image(t_win *window_config, int rays)
         texy = (int)texpos & (texture->height - 1);
         texpos += step;
         color = *(unsigned int*)(texture->addr + (texy * texture->line_length + texx * (texture->bpp / 8)));
-        // window_config->buff[y][rays] = color;
+        if (color == 4278190080)
+            color = 0x00000000;
         pixel_put(window_config->image, rays, y, color);
         y++;
     }

@@ -1,40 +1,44 @@
 #include "cub3d.h"
 static int pass(int *i, char *line)
 {
-    if (line[*i] && (line[*i] == ' ' || line[*i] == ','))
-    {
-        whitespace_skip(i, line);
-        if (line[*i] == ',')
-            (*i)++;
-    }
-    else
+    whitespace_skip(i, line);
+    if (line[*i] && line[*i] != ',')
         return (0);
+    else
+        (*i)++;
     whitespace_skip(i, line);
     return (1);
 }
 
 static int  color_format_check(char *line, int i)
 {
-    if (line[i] && !ft_isdigit(line[i]))
+    int colors;
+
+    colors = 0;
+    if (line[i] && ft_isdigit(line[i]))
+        colors++;
+    else
         return (put_error_msg("Error: Invalid color string\n"));
     while (line[i] && ft_isdigit(line[i]))
         i++;
     if (!pass(&i, line))
         return (put_error_msg("Error: Invalid color string\n"));
-    if (line[i] && !ft_isdigit(line[i]))
+    if (line[i] && ft_isdigit(line[i]))
+        colors++;
+    else
         return (put_error_msg("Error: Invalid color string\n"));
     while (line[i] && ft_isdigit(line[i]))
         i++;
     if (!pass(&i, line))
         return (put_error_msg("Error: Invalid color string\n"));
-    if (line[i] && !ft_isdigit(line[i]))
+    if (line[i] && ft_isdigit(line[i]))
+        colors++;
+    else
         return (put_error_msg("Error: Invalid color string\n"));
     while (line[i] && ft_isdigit(line[i]))
         i++;
-     if (line[i] && line[i] != ' ')
-        return (put_error_msg("Error: Invalid color string\n"));
     whitespace_skip(&i, line);
-    if (line[i])
+    if (line[i] || colors != 3)
         return (put_error_msg("Error: Invalid color string\n"));
     return (1);
 }
