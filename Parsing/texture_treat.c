@@ -2,11 +2,11 @@
 
 static int  texture_fomat_check(t_win *window_config, char *line, int i)
 {
-    if ((line[i] == 'N' && line[i + 1] == 'O' && window_config->no_tex->img_ptr)
-    || (line[i] == 'S' && line[i + 1] == 'O' && window_config->so_tex->img_ptr)
-    || (line[i] == 'W' && line[i + 1] == 'E' && window_config->we_tex->img_ptr)
-    || (line[i] == 'E' && line[i + 1] == 'A' && window_config->ea_tex->img_ptr)
-    || (line[i] == 'S' && line[i + 1] == ' ' && window_config->sprite_tex->img_ptr))
+    if ((line[i] == 'N' && line[i + 1] == 'O' && window_config->no_tex)
+    || (line[i] == 'S' && line[i + 1] == 'O' && window_config->so_tex)
+    || (line[i] == 'W' && line[i + 1] == 'E' && window_config->we_tex)
+    || (line[i] == 'E' && line[i + 1] == 'A' && window_config->ea_tex)
+    || (line[i] == 'S' && line[i + 1] == ' ' && window_config->sprite_tex))
         return (put_error_msg("Error: Texture specified twice\n"));
     i += 2;
     whitespace_skip(&i, line);
@@ -52,18 +52,12 @@ static int xpm_to_img(t_win *window_config, char *file, t_image *img)
         if (!(img->img_ptr = mlx_xpm_file_to_image(window_config->mlx_ptr, file, &img->width, &img->height)))
             return (put_error_msg("Error: Can't open texture file\n"));
     }
-        // if (name_check(file, ".png"))
-    // {
-    //     if (!(img->img_ptr = mlx_png_file_to_image(window_config->mlx_ptr, file, &img->width, &img->height)))
-    //         return (put_error_msg("Error: Can't open texture file\n"));
-    // }
     else
         return (0);
     if (img->width != 64 || img->height != 64)
         return (put_error_msg("Error: Wrong resolution of texture file\n"));
     if (!(img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_length, &img->endian)))
         return (put_error_msg("Error: Can't open texture file\n"));
-    printf("texture %s\n", file);
     return (1);
 }
 
@@ -92,6 +86,6 @@ int texture_treat(t_win *window_config, char *line, int i)
     if (line[i] == 'S' && line[i + 1] == ' ')
         window_config->sprite_tex = img;
     free(file_name);
-    // free(img);
+    free(line);
     return (1);
 }

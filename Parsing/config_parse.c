@@ -21,7 +21,10 @@ static int  line_treat(t_win *window_config, char *line, int rtn)
     || (line[i] == 'S' && line[i + 1] == ' ')))
         error = texture_treat(window_config, line, i);
     else if (line[i] == '\0' && rtn && !window_config->map->map_exists)
+    {
+        free(line);
         return (error);
+    }
     else
         return (error = put_error_msg("Error: Invalid configuration file\n"));
     return (error);
@@ -75,11 +78,5 @@ int config_parser(t_win *window_config)
         return (0);
     if (!sprite_save(window_config, window_config->map->map))
         return (0);
-    fd = -1;
-    free(line);
-    printf("%d\n", window_config->window_width);
-    printf("%d\n", window_config->window_height);
-    while (window_config->map->map[++fd])
-        ft_putendl_fd(window_config->map->map[fd], 1);
     return (1);
 }

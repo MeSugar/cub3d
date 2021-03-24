@@ -66,5 +66,6 @@ int     resolution_treat(t_win *window_config, char *line, int i)
     if (!resoluiton_fomat_check(line, i))
         return (0);
     store_resolution(window_config, line, i);
+    free (line);
     return (1);
 }

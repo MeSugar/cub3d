@@ -96,5 +96,6 @@ int color_treat(t_win *window_config, char *line, int i)
         return (0);
     if ((r = color_atoi(line, &i)) == -1 || (g = color_atoi(line, &i)) == -1 || (b = color_atoi(line, &i)) == -1)
         return (0);
+    free (line);
     return (convert_color(window_config, c, r, g, b));
 }

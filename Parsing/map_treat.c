@@ -52,6 +52,7 @@ int map_save(t_win *window_config, int size)
     {
         map[++i] = ft_calloc(window_config->map->width, sizeof(char));
         ft_strlcpy(map[i], window_config->mapp->content, ft_strlen(window_config->mapp->content) + 1);
+        free(window_config->mapp->content);
         free(window_config->mapp);
         window_config->mapp = window_config->mapp->next;
     }

@@ -117,7 +117,7 @@ int create_image(t_win *window_config, int rays)
     
     ceiling_and_floor(window_config, rays);
     y = window_config->ray->draw_start;
-    while (y < window_config->ray->draw_end + 1)
+    while (y < window_config->ray->draw_end)
     {
         texy = (int)texpos & (texture->height - 1);
         texpos += step;

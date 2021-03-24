@@ -58,15 +58,26 @@ int image_init(t_win *window_config)
 
 int     texture_init(t_win *window_config)
 {
-    if (!(window_config->no_tex = ft_calloc(1, sizeof(t_image))))
-        return (put_error_msg("Error: Malloc error\n"));
-    if (!(window_config->so_tex = ft_calloc(1, sizeof(t_image))))
-        return (put_error_msg("Error: Malloc error\n"));
-    if (!(window_config->we_tex = ft_calloc(1, sizeof(t_image))))
-        return (put_error_msg("Error: Malloc error\n"));
-    if (!(window_config->ea_tex = ft_calloc(1, sizeof(t_image))))
-        return (put_error_msg("Error: Malloc error\n"));
-    if (!(window_config->sprite_tex = ft_calloc(1, sizeof(t_image))))
-        return (put_error_msg("Error: Malloc error\n"));
+    // if (!(window_config->no_tex = ft_calloc(1, sizeof(t_image))))
+    //     return (put_error_msg("Error: Malloc error\n"));
+    // if (!(window_config->so_tex = ft_calloc(1, sizeof(t_image))))
+    //     return (put_error_msg("Error: Malloc error\n"));
+    // if (!(window_config->we_tex = ft_calloc(1, sizeof(t_image))))
+    //     return (put_error_msg("Error: Malloc error\n"));
+    // if (!(window_config->ea_tex = ft_calloc(1, sizeof(t_image))))
+    //     return (put_error_msg("Error: Malloc error\n"));
+    // if (!(window_config->sprite_tex = ft_calloc(1, sizeof(t_image))))
+    //     return (put_error_msg("Error: Malloc error\n"));
+    
+    window_config->no_tex = 0;
+    window_config->so_tex = 0;
+    window_config->ea_tex = 0;
+    window_config->we_tex = 0;
+    window_config->sprite_tex = 0;
+    window_config->no_tex->img_ptr = 0;
+    window_config->so_tex->img_ptr = 0;
+    window_config->ea_tex->img_ptr = 0;
+    window_config->we_tex->img_ptr = 0;
+    window_config->sprite_tex->img_ptr = 0;
     return (1);
 }
