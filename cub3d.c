@@ -13,6 +13,17 @@ int name_check(char *av, char *cub)
     return (1);
 }
 
+static int save_flag_check(char *av, char *save)
+{
+
+    int i;
+
+    i = 0;
+    if (!(ft_strncmp(av, save, ft_strlen(save))))
+        return (1);
+    else
+        return (put_error_msg("Error: Invalid flag\n"));
+}
 static int loop(t_win *window_config)
 {
     mlx_hook(window_config->win_ptr, 2, 1L << 0, pressed_buttons, window_config);
@@ -39,7 +50,7 @@ int main(int ac, char **av)
             return (0);
         loop(window_config);
     }
-    else if (ac == 3)
+    else if (ac == 3 && name_check(av[1], ".cub") && save_flag_check(av[2], "--save"))
     {
         if (!(window_config = window_config_init(av[1], 1))
         || !map_player_buttons_sprite_init(window_config)
