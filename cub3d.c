@@ -46,8 +46,10 @@ int main(int ac, char **av)
         || !config_parser(window_config)
         || !window_init(window_config)
         || !image_init(window_config))
-        // || !draw_screen(window_config))
+        {
+            finish_program(window_config, 1);
             return (0);
+        }
         loop(window_config);
     }
     else if (ac == 3 && name_check(av[1], ".cub") && save_flag_check(av[2], "--save"))
@@ -59,9 +61,11 @@ int main(int ac, char **av)
         || !window_init(window_config)
         || !image_init(window_config)
         || !draw_screen(window_config))
+        {
+            finish_program(window_config, 1);
             return (0);
+        }
     }
     else
         return (0);
 }
-    
