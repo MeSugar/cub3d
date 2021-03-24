@@ -76,8 +76,8 @@ int config_parser(t_win *window_config)
     if (!sprite_save(window_config, window_config->map->map))
         return (0);
     fd = -1;
-    printf("%lld\n", window_config->window_width);
-    printf("%lld\n", window_config->window_height);
+    printf("%d\n", window_config->window_width);
+    printf("%d\n", window_config->window_height);
     while (window_config->map->map[++fd])
         ft_putendl_fd(window_config->map->map[fd], 1);
     return (1);

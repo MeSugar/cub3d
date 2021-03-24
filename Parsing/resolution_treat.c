@@ -30,17 +30,29 @@ static int  resoluiton_fomat_check(char *line, int i)
 
 static void store_resolution(t_win *window_config, char *line, int i)
 {
+    long long res;
+    
+    res = 0;
     i--;
     while (ft_isdigit(line[++i]))
-        window_config->window_width = (window_config->window_width * 10) + (line[i] - '0');
-    if (window_config->window_width > 2560)
-        window_config->window_width = 2560;
+    {
+        res = (res * 10) + (line[i] - '0');
+        if (res > 2560)
+            window_config->window_width = 2560;
+        else
+            window_config->window_width = (int)res;
+    }
     whitespace_skip(&i, line);
     i--;
+    res = 0;
     while (ft_isdigit(line[++i]))
-        window_config->window_height = (window_config->window_height * 10) + (line[i] - '0');
-	if (window_config->window_height > 1400)
-		window_config->window_height = 1400;
+    {
+        res = (res * 10) + (line[i] - '0');
+        if (res > 1440)
+            window_config->window_height = 1440;
+        else
+            window_config->window_height = (int)res;
+    }
 }
 
 int     resolution_treat(t_win *window_config, char *line, int i)

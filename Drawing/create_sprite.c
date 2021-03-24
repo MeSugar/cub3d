@@ -43,7 +43,7 @@ static void draw_sprite(t_win *window_config, int sprites)
         && window_config->sprite->transformy < window_config->buff[window_config->sprite->ver_line])
 		{
 			y = window_config->sprite->draw_starty - 1;
-			while (++y < window_config->sprite->draw_endy)
+			while (++y < window_config->sprite->draw_endy - 1)
 			{
                 d = y * window_config->sprite_tex->line_length - window_config->window_height * (window_config->sprite_tex->line_length / 2) +
                 window_config->sprite->height * window_config->sprite_tex->line_length / 2;

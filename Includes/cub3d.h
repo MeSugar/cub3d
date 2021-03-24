@@ -112,8 +112,8 @@ typedef struct  s_win
     void    *mlx_ptr;
     void    *win_ptr;
     const char    *config_file;
-    long long     window_width;
-    long long     window_height;
+    int     window_width;
+    int     window_height;
     int     floor_color;
     int     ceiling_color;
     int save_mode;

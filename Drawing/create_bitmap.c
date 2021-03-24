@@ -25,23 +25,19 @@ static void pixel_data_to_bmp(t_image *img, int fd)
 	}
 }
 
-int create_bitmap(t_win *window_config, t_image *image)
+static void save_header_values(t_image *image, int fd)
 {
-    int fd;
-    // int empty_fields;
+    int image_size;
     int file_size;
     int first_pix;
     int header_size;
     int plane;
-    int image_size;
 
-
-    file_size = image->width * image->height * 4 + 54;
+    image_size = image->width * image->height * 4;
+    file_size = image_size + 54;
     first_pix = 54;
     header_size = 40;
     plane = 1;
-    image_size = image->width * image->height * 4;
-    fd = open("cub3D.bmp", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
     write(fd, "BM", 2);
     write(fd, &file_size, 4);
     write(fd, "\0\0\0\0", 4);
@@ -51,11 +47,17 @@ int create_bitmap(t_win *window_config, t_image *image)
     write(fd, &image->height, 4);
     write(fd, &plane, 2);
     write(fd, &image->bpp, 2);
-    // empty_fields = -1;
-    // while (++empty_fields < 24)
     write(fd, "\0", 4);
     write(fd, &image_size, 4);
-    write(fd, "\0", 16);
+    write(fd, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 16);
+}
+
+int create_bitmap(t_win *window_config, t_image *image)
+{
+    int fd;
+
+    fd = open("cub3D.bmp", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+    save_header_values(image, fd);
     pixel_data_to_bmp(image, fd);
     close(fd);
     finish_program(window_config, 1);
