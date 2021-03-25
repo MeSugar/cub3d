@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:10:35 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 21:56:46 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/26 02:03:45 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int map_player_buttons_sprite_init(t_win *window_config)
 int window_init(t_win *window_config)
 {
     if (!(window_config->win_ptr = mlx_new_window(window_config->mlx_ptr,
-    window_config->window_width, window_config->window_height, "cub3D")))
+    window_config->win_w, window_config->win_h, "cub3D")))
         return (put_error_msg("Error: Can't create new window\n"));
     return (1);
 }
@@ -58,16 +58,16 @@ int image_init(t_win *window_config)
     if (!(window_config->image = ft_calloc(1, sizeof(t_image))))
         return (put_error_msg("Error: Malloc error\n"));
     if (!(window_config->image->img_ptr = mlx_new_image(window_config->mlx_ptr,
-    window_config->window_width, window_config->window_height)))
+    window_config->win_w, window_config->win_h)))
         return (put_error_msg("Error: Can't create image\n"));
     if (!(window_config->image->addr = mlx_get_data_addr(window_config->image->img_ptr,
-    &window_config->image->bpp, &window_config->image->line_length, &window_config->image->endian)))
+    &window_config->image->bpp, &window_config->image->line_l, &window_config->image->endian)))
         return (put_error_msg("Error: Can't get image data\n"));
-    window_config->image->height = window_config->window_height;
-    window_config->image->width = window_config->window_width;
+    window_config->image->height = window_config->win_h;
+    window_config->image->width = window_config->win_w;
     if (!(window_config->ray = ft_calloc(1, sizeof(t_ray))))
         return (put_error_msg("Error: Malloc error\n"));
-    if (!(window_config->buff = ft_calloc(window_config->window_width, sizeof(double))))
+    if (!(window_config->buff = ft_calloc(window_config->win_w, sizeof(double))))
 		return (put_error_msg("Error: Malloc error\n"));
     return (1);
 }

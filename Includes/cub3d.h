@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:09:30 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 21:49:31 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/26 02:23:23 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@
 
 typedef struct s_sprite
 {
-    char **spr_pos;
+    char **spos;
     int sprites_number;
     double spritex;
     double spritey;
     double invdet;
     double transformx;
     double transformy;
-    int sprite_screenx;
+    int screenx;
     int height;
     int width;
     int draw_starty;
@@ -92,7 +92,7 @@ typedef struct s_image
     void        *img_ptr;
     char        *addr;
     int         bpp;
-    int         line_length;
+    int         line_l;
     int         endian;
     int         width;
     int         height;
@@ -124,8 +124,8 @@ typedef struct  s_win
     void    *mlx_ptr;
     void    *win_ptr;
     const char    *config_file;
-    int     window_width;
-    int     window_height;
+    int     win_w;
+    int     win_h;
     int     floor_color;
     int     ceiling_color;
     int save_mode;
@@ -186,7 +186,8 @@ int create_bitmap(t_win *window_config, t_image *image);
 
 // Sprites
 int create_sprite(t_win* window_config);
-void set_sprite(t_win *window_config, t_player *player, t_sprite *sprite, int i);
+void 	sprite_values(t_win *window_config, t_player *player, t_sprite *sprite, int i);
+// void set_sprite(t_win *window_config, t_player *player, t_sprite *sprite, int i);
 
 
 // Buttons

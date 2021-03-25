@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:11:00 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 21:58:18 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/26 02:03:52 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int put_error_msg(char *error_message)
 
 int config_elements_check(t_win *window_config)
 {
-	if (!window_config->window_width || !window_config->window_height || !window_config->no_tex
+	if (!window_config->win_w || !window_config->win_h || !window_config->no_tex
 	|| !window_config->so_tex || !window_config->ea_tex || !window_config->we_tex
 	|| !window_config->sprite_tex || !window_config->ceiling_color || !window_config->floor_color)
 		return (0);

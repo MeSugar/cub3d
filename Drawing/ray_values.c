@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:09:14 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 20:09:15 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/26 02:02:08 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void set_ray(t_win *window_config, int rays)
 {
 	window_config->ray->hit = 0;
-    window_config->ray->camerax = (2 * rays) / (double)window_config->window_width - 1;
+    window_config->ray->camerax = (2 * rays) / (double)window_config->win_w - 1;
 	window_config->ray->rdx = window_config->player->pdx + window_config->player->planex * window_config->ray->camerax;
 	window_config->ray->rdy = window_config->player->pdy + window_config->player->planey * window_config->ray->camerax;
 	window_config->ray->mapx = (int)window_config->player->px;
@@ -81,11 +81,11 @@ void calculate_wall_dist_n_height(t_win *window_config)
 		window_config->ray->wall_dist = (window_config->ray->mapx - window_config->player->px + (1 - window_config->ray->stepx) / 2) / window_config->ray->rdx;
 	else
 		window_config->ray->wall_dist = (window_config->ray->mapy - window_config->player->py + (1 - window_config->ray->stepy) / 2) / window_config->ray->rdy;
-	window_config->ray->wall_height = (int)(window_config->window_height / window_config->ray->wall_dist);
-	window_config->ray->draw_start = (-window_config->ray->wall_height / 2 + window_config->window_height / 2);
+	window_config->ray->wall_height = (int)(window_config->win_h / window_config->ray->wall_dist);
+	window_config->ray->draw_start = (-window_config->ray->wall_height / 2 + window_config->win_h / 2);
 	if (window_config->ray->draw_start < 0)
 		window_config->ray->draw_start = 0;
-	window_config->ray->draw_end = (window_config->ray->wall_height / 2 + window_config->window_height / 2);
-	if (window_config->ray->draw_end >= window_config->window_height)
-		window_config->ray->draw_end = window_config->window_height - 1;
+	window_config->ray->draw_end = (window_config->ray->wall_height / 2 + window_config->win_h / 2);
+	if (window_config->ray->draw_end >= window_config->win_h)
+		window_config->ray->draw_end = window_config->win_h - 1;
 }

@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:10:51 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 21:38:33 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/26 02:06:31 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int xpm_to_img(t_win *window_config, char *file, t_image *img)
         return (put_error_msg("Error: Invalid texture file name\n"));
     if (img->width != 64 || img->height != 64)
         return (put_error_msg("Error: Wrong resolution of texture file\n"));
-    if (!(img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_length, &img->endian)))
+    if (!(img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_l, &img->endian)))
         return (put_error_msg("Error: Can't open texture file\n"));
     return (1);
 }

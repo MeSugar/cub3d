@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 19:41:59 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 20:45:00 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/26 02:00:32 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	pixel_data_to_bmp(t_image *img, int fd)
 	int				x;
 	unsigned char	buf[4];
 
-	row = img->line_length * (img->height - 1);
+	row = img->line_l * (img->height - 1);
 	while (row >= 0)
 	{
 		x = 0;
-		while (x < img->line_length)
+		while (x < img->line_l)
 		{
 			buf[0] = (unsigned char)(img->addr[row]);
 			buf[1] = (unsigned char)(img->addr[row + 1]);
@@ -32,7 +32,7 @@ static void	pixel_data_to_bmp(t_image *img, int fd)
 			x += 4;
 			row += 4;
 		}
-		row -= 2 * img->line_length;
+		row -= 2 * img->line_l;
 	}
 }
 

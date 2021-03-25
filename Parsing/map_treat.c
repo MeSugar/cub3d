@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:10:41 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 21:09:14 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/26 00:57:51 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int sprite_save(t_win *window_config, char **map)
             }
         }
     }
-    window_config->sprite->spr_pos = buf;
+    window_config->sprite->spos = buf;
     return (1);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_image.c                                     :+:      :+:    :+:   */
+/*   create_walls_ceiling_floor.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 19:42:04 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 21:00:11 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/26 02:00:44 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		pixel_put(t_image *image, int x, int y, int color)
 {
 	char			*dst;
 
-	dst = image->addr + (y * image->line_length + x * (image->bpp / 8));
+	dst = image->addr + (y * image->line_l + x * (image->bpp / 8));
 	*(unsigned int*)dst = color;
 }
 
@@ -29,7 +29,7 @@ static void	ceiling_and_floor(t_win *window_config, int rays)
 	x = rays;
 	while (++y < window_config->ray->draw_start)
 		pixel_put(window_config->image, rays, y, window_config->ceiling_color);
-	y = window_config->window_height;
+	y = window_config->win_h;
 	while (--y > window_config->ray->draw_end - 1)
 		pixel_put(window_config->image, rays, y, window_config->floor_color);
 }
@@ -66,7 +66,7 @@ int			create_image(t_win *window_config, int rays)
 
 
 	step = 1.0 * texture->height / window_config->ray->wall_height;
-	texpos = (window_config->ray->draw_start - window_config->window_height / 2 + window_config->ray->wall_height / 2) * step;
+	texpos = (window_config->ray->draw_start - window_config->win_h / 2 + window_config->ray->wall_height / 2) * step;
 
 	ceiling_and_floor(window_config, rays);
 	y = window_config->ray->draw_start;
@@ -74,7 +74,7 @@ int			create_image(t_win *window_config, int rays)
 	{
 		texy = (int)texpos & (texture->height - 1);
 		texpos += step;
-		color = *(unsigned int*)(texture->addr + (texy * texture->line_length + texx * (texture->bpp / 8)));
+		color = *(unsigned int*)(texture->addr + (texy * texture->line_l + texx * (texture->bpp / 8)));
 		if (color == 4278190080)
 			color = 0x00000000;
 		pixel_put(window_config->image, rays, y, color);

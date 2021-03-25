@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 19:41:08 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 20:02:21 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/26 02:02:03 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static void raycast(t_win *window_config, int rays)
 // {
 //     int x = 0;
 //     int y;
-//     while (x < window_config->window_width)
+//     while (x < window_config->win_w)
 //         {
 //             y = 0;
-//             while (y < window_config->window_height)
+//             while (y < window_config->win_h)
 //             {
 //                 pixel_put(window_config->image, x, y, 0x00000000);
 //                 y++;
@@ -46,18 +46,18 @@ int draw_screen(t_win *window_config)
     // clear(window_config);
     // if (!(window_config->ray = ft_calloc(1, sizeof(t_ray))))
     //     return (put_error_msg("Error: Malloc error\n"));
-    // if (!(window_config->buff = ft_calloc(window_config->window_width, sizeof(double))))
+    // if (!(window_config->buff = ft_calloc(window_config->win_w, sizeof(double))))
 	// 	return (put_error_msg("Error: Malloc error\n"));
     rays = -1;
-    while (++rays < window_config->window_width)
+    while (++rays < window_config->win_w)
         raycast(window_config, rays);
     create_sprite(window_config);
     if (window_config->save_mode)
         create_bitmap(window_config, window_config->image);
     // draw_image(window_config, rays);
     // draw_map(window_config, window_config->buff);
-    mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
     treat_buttons(window_config);
+    mlx_put_image_to_window(window_config->mlx_ptr, window_config->win_ptr, window_config->image->img_ptr, 0, 0);
     // free(window_config->ray);
     // free(window_config->buff);
     return (1);
