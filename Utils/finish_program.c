@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:11:08 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 20:11:09 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/25 21:52:06 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int finish_program(t_win *window_config, int mode)
     free(window_config->sprite_tex);
     free(window_config);
     exit(0);
-    return (1);
+    return (0);
 }
 
 // int kill_window(t_win *window_config)

@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 19:41:22 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 20:34:15 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/25 23:39:56 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		pressed_buttons(int keycode, t_win *window_config)
 		window_config->buttons->turn_left = 1;
 	if (keycode == TURN_RIGHT && !window_config->buttons->turn_right)
 		window_config->buttons->turn_right = 1;
+	draw_screen(window_config);
 	return (1);
 }
 
@@ -45,6 +46,7 @@ int		released_buttons(int keycode, t_win *window_config)
 		window_config->buttons->turn_left = 0;
 	if (keycode == TURN_RIGHT && window_config->buttons->turn_right)
 		window_config->buttons->turn_right = 0;
+	// draw_screen(window_config);
 	return (1);
 }
 

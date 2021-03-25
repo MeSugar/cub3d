@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:10:35 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 20:10:37 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/25 21:56:46 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ int     texture_init(t_win *window_config)
     window_config->ea_tex = 0;
     window_config->we_tex = 0;
     window_config->sprite_tex = 0;
-    window_config->no_tex->img_ptr = 0;
-    window_config->so_tex->img_ptr = 0;
-    window_config->ea_tex->img_ptr = 0;
-    window_config->we_tex->img_ptr = 0;
-    window_config->sprite_tex->img_ptr = 0;
+    // window_config->no_tex->img_ptr = 0;
+    // window_config->so_tex->img_ptr = 0;
+    // window_config->ea_tex->img_ptr = 0;
+    // window_config->we_tex->img_ptr = 0;
+    // window_config->sprite_tex->img_ptr = 0;
     return (1);
 }

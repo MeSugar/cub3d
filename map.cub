@@ -5,9 +5,12 @@
  C 250, 0, 0 
 
  F 100, 100, 110    
+ 
 
                         NO ./textures/grey.xpm
                             SO ./textures/brick.xpm
+
+
 WE ./textures/blue.xpm
 EA ./textures/wood.xpm
 S ./textures/eye.xpm 
