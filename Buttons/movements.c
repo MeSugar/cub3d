@@ -1,33 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movements.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/25 19:41:29 by gdelta            #+#    #+#             */
+/*   Updated: 2021/03/25 20:33:03 by gdelta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void move_forward(t_win *window_config)
+void	move_forward(t_map *map, t_player *player)
 {
-    if (window_config->map->map[(int)window_config->player->py][(int)(window_config->player->px + window_config->player->pdx * SPEED)] == '0')
-		window_config->player->px += window_config->player->pdx * SPEED;
-	if (window_config->map->map[(int)(window_config->player->py + window_config->player->pdy * SPEED)][(int)window_config->player->px] == '0')
-		window_config->player->py += window_config->player->pdy * SPEED;
+	if (map->map[(int)player->py]
+	[(int)(player->px + player->pdx * SPEED)] == '0')
+		player->px += player->pdx * SPEED;
+	if (map->map[(int)(player->py + player->pdy * SPEED)]
+	[(int)player->px] == '0')
+		player->py += player->pdy * SPEED;
 }
 
-void move_backward(t_win *window_config)
+void	move_backward(t_map *map, t_player *player)
 {
-    if (window_config->map->map[(int)window_config->player->py][(int)(window_config->player->px - window_config->player->pdx * SPEED)] == '0')
-		window_config->player->px -= window_config->player->pdx * SPEED;
-	if (window_config->map->map[(int)(window_config->player->py - window_config->player->pdy * SPEED)][(int)window_config->player->px] == '0')
-		window_config->player->py -= window_config->player->pdy * SPEED;
+	if (map->map[(int)player->py]
+	[(int)(player->px - player->pdx * SPEED)] == '0')
+		player->px -= player->pdx * SPEED;
+	if (map->map[(int)(player->py - player->pdy * SPEED)]
+	[(int)player->px] == '0')
+		player->py -= player->pdy * SPEED;
 }
 
-void move_left(t_win *window_config)
+void	move_left(t_map *map, t_player *player)
 {
-    if (window_config->map->map[(int)window_config->player->py][(int)(window_config->player->px - window_config->player->planex * SPEED)] == '0')
-		window_config->player->px -= window_config->player->planex * SPEED;
-	if (window_config->map->map[(int)(window_config->player->py - window_config->player->planey * SPEED)][(int)window_config->player->px] == '0')
-		window_config->player->py -= window_config->player->planey * SPEED;
+	if (map->map[(int)player->py]
+	[(int)(player->px - player->planex * SPEED)] == '0')
+		player->px -= player->planex * SPEED;
+	if (map->map[(int)(player->py - player->planey * SPEED)]
+	[(int)player->px] == '0')
+		player->py -= player->planey * SPEED;
 }
 
-void move_right(t_win *window_config)
+void	move_right(t_map *map, t_player *player)
 {
-    if (window_config->map->map[(int)window_config->player->py][(int)(window_config->player->px + window_config->player->planex * SPEED)] == '0')
-		window_config->player->px += window_config->player->planex * SPEED;
-	if (window_config->map->map[(int)(window_config->player->py + window_config->player->planey * SPEED)][(int)window_config->player->px] == '0')
-		window_config->player->py += window_config->player->planey * SPEED;
+	if (map->map[(int)player->py]
+	[(int)(player->px + player->planex * SPEED)] == '0')
+		player->px += player->planex * SPEED;
+	if (map->map[(int)(player->py + player->planey * SPEED)]
+	[(int)player->px] == '0')
+		player->py += player->planey * SPEED;
 }

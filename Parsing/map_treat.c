@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_treat.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/25 20:10:41 by gdelta            #+#    #+#             */
+/*   Updated: 2021/03/25 21:09:14 by gdelta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int sprite_save(t_win *window_config, char **map)
@@ -36,7 +48,7 @@ int sprite_save(t_win *window_config, char **map)
             }
         }
     }
-    window_config->sprite->sprites_pos = buf;
+    window_config->sprite->spr_pos = buf;
     return (1);
 }
 

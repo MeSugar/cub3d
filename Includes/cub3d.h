@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/25 20:09:30 by gdelta            #+#    #+#             */
+/*   Updated: 2021/03/25 21:06:55 by gdelta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -23,7 +35,7 @@
 
 typedef struct s_sprite
 {
-    char **sprites_pos;
+    char **spr_pos;
     int sprites_number;
     double spritex;
     double spritey;
@@ -182,11 +194,11 @@ void close_window(t_win *window_config);
 int pressed_buttons(int keycode, t_win *window_config);
 int released_buttons(int keycode, t_win *window_config);
 void treat_buttons(t_win *window_config);
-void move_forward(t_win *window_config);
-void move_backward(t_win *window_config);
-void move_left(t_win *window_config);
-void move_right(t_win *window_config);
-void turn_left(t_win *window_config);
-void turn_right(t_win *window_config);
+void move_forward(t_map *map, t_player *player);
+void move_backward(t_map *map, t_player *player);
+void move_left(t_map *map, t_player *player);
+void move_right(t_map *map, t_player *player);
+void turn_left(t_player *player);
+void turn_right(t_player *player);
 
 #endif

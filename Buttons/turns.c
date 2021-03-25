@@ -1,27 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   turns.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/25 19:41:32 by gdelta            #+#    #+#             */
+/*   Updated: 2021/03/25 20:36:34 by gdelta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void turn_left(t_win *window_config)
+void	turn_left(t_player *player)
 {
 	double olddirx;
 	double oldplanex;
 
-	olddirx = window_config->player->pdx;
-	oldplanex = window_config->player->planex;
-	window_config->player->pdx = window_config->player->pdx * cos(-TURN) - window_config->player->pdy * sin(-TURN);
-	window_config->player->pdy = olddirx * sin(-TURN) + window_config->player->pdy * cos(-TURN);
-	window_config->player->planex = window_config->player->planex * cos(-TURN) - window_config->player->planey * sin(-TURN);
-	window_config->player->planey = oldplanex * sin(-TURN) + window_config->player->planey * cos(-TURN);
+	olddirx = player->pdx;
+	oldplanex = player->planex;
+	player->pdx = player->pdx * cos(-TURN) - player->pdy * sin(-TURN);
+	player->pdy = olddirx * sin(-TURN) + player->pdy * cos(-TURN);
+	player->planex = player->planex * cos(-TURN) - player->planey * sin(-TURN);
+	player->planey = oldplanex * sin(-TURN) + player->planey * cos(-TURN);
 }
 
-void turn_right(t_win *window_config)
+void	turn_right(t_player *player)
 {
 	double olddirx;
 	double oldplanex;
 
-	olddirx = window_config->player->pdx;
-	oldplanex = window_config->player->planex;
-	window_config->player->pdx = window_config->player->pdx * cos(TURN) - window_config->player->pdy * sin(TURN);
-	window_config->player->pdy = olddirx * sin(TURN) + window_config->player->pdy * cos(TURN);
-	window_config->player->planex = window_config->player->planex * cos(TURN) - window_config->player->planey * sin(TURN);
-	window_config->player->planey = oldplanex * sin(TURN) + window_config->player->planey * cos(TURN);
+	olddirx = player->pdx;
+	oldplanex = player->planex;
+	player->pdx = player->pdx * cos(TURN) - player->pdy * sin(TURN);
+	player->pdy = olddirx * sin(TURN) + player->pdy * cos(TURN);
+	player->planex = player->planex * cos(TURN) - player->planey * sin(TURN);
+	player->planey = oldplanex * sin(TURN) + player->planey * cos(TURN);
 }

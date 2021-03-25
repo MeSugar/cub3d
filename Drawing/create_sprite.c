@@ -1,29 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_sprite.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/25 19:42:08 by gdelta            #+#    #+#             */
+/*   Updated: 2021/03/25 21:07:32 by gdelta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static void sort_sprites(t_win *window_config)
+static void	sort_sprites(t_sprite *sprite, t_player *player)
 {
-    int i;
-    double first_dist;
-    double second_dist;
-    char *tmp;
+	int		i;
+	double	first_dist;
+	double	second_dist;
+	char	*tmp;
 
-    i = 0;
-    while (i + 1 < window_config->sprite->sprites_number)
-    {
-        first_dist = ((window_config->player->px - window_config->sprite->sprites_pos[i][1]) * (window_config->player->px - window_config->sprite->sprites_pos[i][1]) +
-        (window_config->player->py - window_config->sprite->sprites_pos[i][0]) * (window_config->player->py - window_config->sprite->sprites_pos[i][0]));
-        second_dist = ((window_config->player->px - window_config->sprite->sprites_pos[i + 1][1]) * (window_config->player->px - window_config->sprite->sprites_pos[i + 1][1]) +
-        (window_config->player->py - window_config->sprite->sprites_pos[i + 1][0]) * (window_config->player->py - window_config->sprite->sprites_pos[i + 1][0]));
-        if (first_dist < second_dist)
+	i = 0;
+	while (i + 1 < sprite->sprites_number)
+	{
+		first_dist = ((player->px - sprite->spr_pos[i][1])
+		* (player->px - sprite->spr_pos[i][1])
+		+ (player->py - sprite->spr_pos[i][0])
+		* (player->py - sprite->spr_pos[i][0]));
+		second_dist = ((player->px - sprite->spr_pos[i + 1][1])
+		* (player->px - sprite->spr_pos[i + 1][1])
+		+ (player->py - sprite->spr_pos[i + 1][0])
+		* (player->py - sprite->spr_pos[i + 1][0]));
+		if (first_dist < second_dist)
 		{
-			tmp = window_config->sprite->sprites_pos[i];
-			window_config->sprite->sprites_pos[i] = window_config->sprite->sprites_pos[i + 1];
-			window_config->sprite->sprites_pos[i + 1] = tmp;
+			tmp = sprite->spr_pos[i];
+			sprite->spr_pos[i] = sprite->spr_pos[i + 1];
+			sprite->spr_pos[i + 1] = tmp;
 			i = 0;
 		}
-        else
-            i++;
-    }
+		else
+			i++;
+	}
 }
 
 static void draw_sprite(t_win *window_config, int sprites)
@@ -60,7 +76,7 @@ static void draw_sprite(t_win *window_config, int sprites)
 int create_sprite(t_win* window_config)
 {
     int sprites;
-    sort_sprites(window_config);
+    sort_sprites(window_config->sprite, window_config->player);
     sprites = -1;
     while (++sprites < window_config->sprite->sprites_number)
     {

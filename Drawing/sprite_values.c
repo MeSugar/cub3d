@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite_values.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/25 20:09:20 by gdelta            #+#    #+#             */
+/*   Updated: 2021/03/25 21:11:43 by gdelta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void set_sprite(t_win *window_config, t_player *player, t_sprite *sprite, int i)
 {
-    sprite->spritex =  sprite->sprites_pos[i][1] - player->px + 0.5;
-    sprite->spritey =  sprite->sprites_pos[i][0] - player->py + 0.5;
+    sprite->spritex =  sprite->spr_pos[i][1] - player->px + 0.5;
+    sprite->spritey =  sprite->spr_pos[i][0] - player->py + 0.5;
 
     sprite->invdet = 1.0 / (player->planex * player->pdy - player->pdx * player->planey);
     sprite->transformx = sprite->invdet * (player->pdy * sprite->spritex - player->pdx * sprite->spritey);

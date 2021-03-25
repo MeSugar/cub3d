@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/25 20:10:35 by gdelta            #+#    #+#             */
+/*   Updated: 2021/03/25 20:10:37 by gdelta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 t_win *window_config_init(const char *config_file, int save_mode)
@@ -53,6 +65,10 @@ int image_init(t_win *window_config)
         return (put_error_msg("Error: Can't get image data\n"));
     window_config->image->height = window_config->window_height;
     window_config->image->width = window_config->window_width;
+    if (!(window_config->ray = ft_calloc(1, sizeof(t_ray))))
+        return (put_error_msg("Error: Malloc error\n"));
+    if (!(window_config->buff = ft_calloc(window_config->window_width, sizeof(double))))
+		return (put_error_msg("Error: Malloc error\n"));
     return (1);
 }
 
