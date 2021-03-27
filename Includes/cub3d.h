@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:09:30 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/27 15:43:19 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/27 19:52:56 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,17 +152,14 @@ typedef struct	s_win
 	t_tex		*tex;
 }				t_win;
 
-// Inits
 t_win			*window_config_init(const char *config_file, int save_mode);
 int				map_player_buttons_sprite_init(t_win *window_config);
 int				window_init(t_win *window_config);
 int				image_init(t_win *window_config);
 int				texture_init(t_win *window_config);
-// Error management
 int				name_check(char *av, char *cub);
 int				put_error_msg(char *error_message);
 int				finish_program(t_win *window_config, int mode);
-// Parsing
 int				config_parser(t_win *window_config);
 int				get_next_line(int fd, char **line);
 void			whitespace_skip(int *i, char *line);
@@ -175,7 +172,6 @@ int				resolution_treat(t_win *window_config, char *line, int i);
 int				color_treat(t_win *window_config, char *line, int i);
 int				texture_treat(t_win *window_config, char *line, int i);
 int				config_elements_check(t_win *window_config);
-// Drawing
 void			pixel_put(t_image *image, int x, int y, int color);
 int				draw_screen(t_win *window_config);
 int				create_image(t_win *window_config, t_tex *tex, int rays);
@@ -184,11 +180,9 @@ void			set_side_dist(t_win *window_config);
 void			find_wall(t_win *window_config);
 void			calculate_wall_dist_n_height(t_win *window_config);
 int				create_bitmap(t_win *window_config, t_image *image);
-// Sprites
 int				create_sprite(t_win *window_config);
 void			sprite_values(t_win *window_config, t_player *player,
 t_sprite *sprite, int i);
-// Buttons
 void			close_window(t_win *window_config);
 int				pressed_buttons(int keycode, t_win *window_config);
 int				released_buttons(int keycode, t_win *window_config);

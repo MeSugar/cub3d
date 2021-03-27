@@ -6,15 +6,15 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:11:15 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/25 20:11:19 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/27 19:28:56 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void whitespace_skip(int *i, char *line)
+void	whitespace_skip(int *i, char *line)
 {
 	while (line[*i] == '\t' || line[*i] == '\n' || line[*i] == '\r'
-    || line[*i] == '\v' || line[*i] == '\f' || line[*i] == ' ')
+	|| line[*i] == '\v' || line[*i] == '\f' || line[*i] == ' ')
 		(*i)++;
 }

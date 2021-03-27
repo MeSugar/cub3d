@@ -1,4 +1,4 @@
-    R 2000 1000
+    R 1800 1000
 
    
 
@@ -12,7 +12,7 @@
 
 
 WE ./textures/blue.xpm
-EA ./textures/wood.xpm
+EA ./textures/floor.xpm
 S ./textures/eye.xpm 
 
 

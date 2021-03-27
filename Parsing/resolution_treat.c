@@ -6,78 +6,75 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:10:47 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/26 02:03:28 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/27 19:18:15 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int  resoluiton_fomat_check(char *line, int i)
+static int	resoluiton_fomat_check(char *line, int i)
 {
-    int sides;
+	int			sides;
 
-    sides = 0;
-    if (line[i] && ft_isdigit(line[i]))
-        sides++;
-    else
-        return (put_error_msg("Error: Invalid resolution string\n"));
-    while (line[i] && ft_isdigit(line[i]))
-        i++;
-    // if (line[i] && line[i] != ' ')
-    //     return (put_error_msg("Error: Invalid resolution string\n"));
-    whitespace_skip(&i, line);
-    if (line[i] && ft_isdigit(line[i]))
-        sides++;
-    else
-        return (put_error_msg("Error: Invalid resolution string\n"));
-    while (line[i] && ft_isdigit(line[i]))
-        i++;
-    // if (line[i] && line[i] != ' ')
-    //     return (put_error_msg("Error: Invalid resolution string\n"));
-    whitespace_skip(&i, line);
-    if (line[i] || sides != 2)
-        return (put_error_msg("Error: Invalid resolution string\n"));
-    return (1);
+	sides = 0;
+	if (line[i] && ft_isdigit(line[i]))
+		sides++;
+	else
+		return (put_error_msg("Error: Invalid resolution string\n"));
+	while (line[i] && ft_isdigit(line[i]))
+		i++;
+	whitespace_skip(&i, line);
+	if (line[i] && ft_isdigit(line[i]))
+		sides++;
+	else
+		return (put_error_msg("Error: Invalid resolution string\n"));
+	while (line[i] && ft_isdigit(line[i]))
+		i++;
+	whitespace_skip(&i, line);
+	if (line[i] || sides != 2)
+		return (put_error_msg("Error: Invalid resolution string\n"));
+	return (1);
 }
 
-static void store_resolution(t_win *window_config, char *line, int i)
+static void	store_resolution(t_win *window_config, char *line, int i)
 {
-    long long res;
-    
-    res = 0;
-    i--;
-    while (ft_isdigit(line[++i]))
-    {
-        res = (res * 10) + (line[i] - '0');
-        if (res > 2560)
-            window_config->win_w = 2560;
-        else
-            window_config->win_w = (int)res;
-    }
-    whitespace_skip(&i, line);
-    i--;
-    res = 0;
-    while (ft_isdigit(line[++i]))
-    {
-        res = (res * 10) + (line[i] - '0');
-        if (res > 1440)
-            window_config->win_h = 1440;
-        else
-            window_config->win_h = (int)res;
-    }
+	i--;
+	while (ft_isdigit(line[++i]))
+	{
+		window_config->win_w = (window_config->win_w * 10) + (line[i] - '0');
+		if (window_config->win_w > 2560)
+		{
+			window_config->win_w = 2560;
+			break ;
+		}
+	}
+	while (ft_isdigit(line[i]))
+		i++;
+	whitespace_skip(&i, line);
+	i--;
+	while (ft_isdigit(line[++i]))
+	{
+		window_config->win_h = (window_config->win_h * 10) + (line[i] - '0');
+		if (window_config->win_h > 1440)
+		{
+			window_config->win_h = 1440;
+			break ;
+		}
+	}
+	while (ft_isdigit(line[i]))
+		i++;
 }
 
-int     resolution_treat(t_win *window_config, char *line, int i)
+int			resolution_treat(t_win *window_config, char *line, int i)
 {
-    if (window_config->win_w || window_config->win_h)
-        return (put_error_msg("Error: Resolution specified twice\n"));
-    // whitespace_skip(&i, line);
-    if (line[i] && line[i] == 'R')
-        i++;
-    whitespace_skip(&i, line);
-    if (!resoluiton_fomat_check(line, i))
-        return (0);
-    store_resolution(window_config, line, i);
-    free (line);
-    return (1);
+	if (window_config->win_w || window_config->win_h)
+		return (put_error_msg("Error: Resolution specified twice\n"));
+	if (line[i] && line[i] == 'R')
+		i++;
+	whitespace_skip(&i, line);
+	if (!resoluiton_fomat_check(line, i))
+		return (0);
+	store_resolution(window_config, line, i);
+	free(line);
+	return (1);
 }
