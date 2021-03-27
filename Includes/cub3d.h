@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:09:30 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/27 19:52:56 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/27 20:32:10 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ typedef struct	s_win
 	char		color;
 	int			win_w;
 	int			win_h;
+	int			screen_width;
+	int			screen_height;
 	int			floor_color;
 	int			ceiling_color;
 	int			save_mode;
@@ -193,5 +195,6 @@ void			move_left(t_map *map, t_player *player);
 void			move_right(t_map *map, t_player *player);
 void			turn_left(t_player *player);
 void			turn_right(t_player *player);
+void			mlx_get_screen_size(int *width, int *height);
 
 #endif

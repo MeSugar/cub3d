@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:10:47 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/27 19:18:15 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/27 20:41:25 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static void	store_resolution(t_win *window_config, char *line, int i)
 	while (ft_isdigit(line[++i]))
 	{
 		window_config->win_w = (window_config->win_w * 10) + (line[i] - '0');
-		if (window_config->win_w > 2560)
+		if (window_config->win_w > window_config->screen_width)
 		{
-			window_config->win_w = 2560;
+			window_config->win_w = window_config->screen_width;
 			break ;
 		}
 	}
@@ -55,9 +55,9 @@ static void	store_resolution(t_win *window_config, char *line, int i)
 	while (ft_isdigit(line[++i]))
 	{
 		window_config->win_h = (window_config->win_h * 10) + (line[i] - '0');
-		if (window_config->win_h > 1440)
+		if (window_config->win_h > window_config->screen_height)
 		{
-			window_config->win_h = 1440;
+			window_config->win_h = window_config->screen_height;
 			break ;
 		}
 	}
@@ -69,6 +69,8 @@ int			resolution_treat(t_win *window_config, char *line, int i)
 {
 	if (window_config->win_w || window_config->win_h)
 		return (put_error_msg("Error: Resolution specified twice\n"));
+	mlx_get_screen_size(&window_config->screen_width,
+	&window_config->screen_height);
 	if (line[i] && line[i] == 'R')
 		i++;
 	whitespace_skip(&i, line);

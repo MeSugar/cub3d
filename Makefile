@@ -6,7 +6,7 @@
 #    By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 20:04:32 by gdelta            #+#    #+#              #
-#    Updated: 2021/03/27 20:00:41 by gdelta           ###   ########.fr        #
+#    Updated: 2021/03/27 20:36:23 by gdelta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT		=	./Libft/libft.a
 
 MINILIB		=	./Minilib
 
-SRCS		=	cub3d.c Utils/get_next_line.c Utils/whitespace_skip.c Utils/error_msgs.c Utils/finish_program.c \
+SRCS		=	cub3d.c Utils/get_next_line.c Utils/whitespace_skip.c Utils/mlx_get_screen_size.m Utils/error_msgs.c Utils/finish_program.c \
 				Parsing/config_parse.c Parsing/init.c Parsing/map_treat.c Parsing/map_format_check.c \
 				Parsing/texture_treat.c Parsing/resolution_treat.c Parsing/color_treat.c \
 				Drawing/create_walls_ceiling_floor.c Drawing/ray_values.c Drawing/create_sprite.c \
