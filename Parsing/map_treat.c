@@ -6,56 +6,55 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:10:41 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/26 00:57:51 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/27 16:57:39 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int sprite_save(t_win *window_config, char **map)
+int	sprite_save(t_win *window_config, char **map)
 {
-    int y;
-    int x;
-    int j;
-    char **buf;
-    int sprites;
+	int		y;
+	int		x;
+	int		j;
+	char	**buf;
+	int		sprites;
     
-    sprites = window_config->sprite->sprites_number;
-    if (!window_config->sprite->sprites_number)
-        return (1);
-    
-    if (!(buf = ft_calloc(window_config->sprite->sprites_number, sizeof(double *))))
-        return (put_error_msg("Error: Malloc error"));
-    y = -1;
-    while (++y < sprites)
-    {
-        if (!(buf[y] = ft_calloc(2, sizeof(double *))))
-            return (put_error_msg("Error: Malloc error"));
-    }
-    y = -1;
-    j = 0;
-    while (map[++y])
-    {
-        x = -1;
-        while (map[y][++x] && sprites)
-        {
-            if (map[y][x] == '2')
-            {
-                buf[j][0] = (double)y;
-                buf[j][1] = (double)x;
-                j++;
-                sprites--;
-            }
-        }
-    }
-    window_config->sprite->spos = buf;
-    return (1);
+	sprites = window_config->sprite->sprites_number;
+	if (!window_config->sprite->sprites_number)
+		return (1);
+	if (!(buf = ft_calloc(window_config->sprite->sprites_number, sizeof(double *))))
+		return (put_error_msg("Error: Malloc error"));
+	y = -1;
+	while (++y < sprites)
+	{
+		if (!(buf[y] = ft_calloc(2, sizeof(double *))))
+			return (put_error_msg("Error: Malloc error"));
+	}
+	y = -1;
+	j = 0;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x] && sprites)
+		{
+			if (map[y][x] == '2')
+			{
+				buf[j][0] = (double)y;
+				buf[j][1] = (double)x;
+				j++;
+				sprites--;
+			}
+		}
+	}
+	window_config->sprite->spos = buf;
+	return (1);
 }
 
-int map_save(t_win *window_config, int size)
+int	map_save(t_win *window_config, int size)
 {
-    char **map;
-    int i;
+    char	**map;
+    int		i;
 
     if (!(map = ft_calloc(size + 1, sizeof(char *))))
         return (put_error_msg("Error: Malloc error during saving the map"));
@@ -78,7 +77,7 @@ int map_save(t_win *window_config, int size)
     return (1);
 }
 
-int map_treat(t_win *window_config, char *line, int i)
+int	map_treat(t_win *window_config, char *line, int i)
 {
     window_config->map->map_exists = 1;
     window_config->map->height++;
@@ -109,36 +108,36 @@ int map_treat(t_win *window_config, char *line, int i)
     return (1);
 }
 
-int map_format_check(char **map, t_win *window_config)
+int	map_format_check(char **map, t_win *window_config)
 {
-    int h;
-    int w;
-    int begin;
+	int		h;
+	int		w;
+	int		begin;
 
-    h = -1;
-    while(map[++h])
-    {
-        w = 0;
-        whitespace_skip(&w, map[h]);
-        begin = w;
-        while (map[h][w])
-        {
-            if ((h == 0 && map[h][w] != '1' && map[h][w] != ' ') || (h == window_config->map->height - 1 && map[h][w] != '1' && map[h][w] != ' '))
-                return (put_error_msg("Error: The map isn't enclosed\n"));
-            if (h > 0 && ((map[h - 1][w] == ' ' && map[h][w] != ' ' && map[h][w] != '1') || (map[h - 1][w] == '\0' && map[h][w] != '1' && map[h][w] != ' ')))
-                return (put_error_msg("Error: The map isn't enclosed\n"));
-            if ((map[h][w] == ' ' && map[h][w + 1] != ' ' && map[h][w + 1] != '1' && map[h][w + 1] != '\0') 
-            || (map[h][w] == ' ' && map[h][w - 1] != ' ' && map[h][w - 1] != '1'))
-                return (put_error_msg("Error: The map isn't enclosed\n"));
-            if (h < window_config->map->height - 1 && ((map[h + 1][w] == ' ' && map[h][w] != ' ' && map[h][w] != '1')
-            || (map[h + 1][w] == '\0' && map[h][w] != ' ' && map[h][w] != '1')))
-                return (put_error_msg("Error: The map isn't enclosed\n"));
-            if (begin - w  == 0 && map[h][w] != '1')
-                return (put_error_msg("Error: The map isn't enclosed\n"));
-            if (map[h][w + 1] == '\0' && map[h][w] != '1' && map[h][w] != ' ')
-                return (put_error_msg("Error: The map isn't enclosed\n"));
-            w++;
-        }
-    }
-    return (1);
+	h = -1;
+	while(map[++h])
+	{
+		w = 0;
+		whitespace_skip(&w, map[h]);
+		begin = w;
+		while (map[h][w])
+		{
+			if ((h == 0 && map[h][w] != '1' && map[h][w] != ' ') || (h == window_config->map->height - 1 && map[h][w] != '1' && map[h][w] != ' '))
+				return (put_error_msg("Error: The map isn't enclosed\n"));
+			if (h > 0 && ((map[h - 1][w] == ' ' && map[h][w] != ' ' && map[h][w] != '1') || (map[h - 1][w] == '\0' && map[h][w] != '1' && map[h][w] != ' ')))
+				return (put_error_msg("Error: The map isn't enclosed\n"));
+			if ((map[h][w] == ' ' && map[h][w + 1] != ' ' && map[h][w + 1] != '1' && map[h][w + 1] != '\0')
+			|| (map[h][w] == ' ' && map[h][w - 1] != ' ' && map[h][w - 1] != '1'))
+				return (put_error_msg("Error: The map isn't enclosed\n"));
+			if (h < window_config->map->height - 1 && ((map[h + 1][w] == ' ' && map[h][w] != ' ' && map[h][w] != '1')
+			|| (map[h + 1][w] == '\0' && map[h][w] != ' ' && map[h][w] != '1')))
+				return (put_error_msg("Error: The map isn't enclosed\n"));
+			if (begin - w  == 0 && map[h][w] != '1')
+				return (put_error_msg("Error: The map isn't enclosed\n"));
+			if (map[h][w + 1] == '\0' && map[h][w] != '1' && map[h][w] != ' ')
+				return (put_error_msg("Error: The map isn't enclosed\n"));
+			w++;
+		}
+	}
+	return (1);
 }

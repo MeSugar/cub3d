@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:09:30 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/27 15:20:14 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/27 15:43:19 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct	s_win
 	void		*mlx_ptr;
 	void		*win_ptr;
 	const char	*config_file;
+	char		color;
 	int			win_w;
 	int			win_h;
 	int			floor_color;
