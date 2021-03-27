@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:11:21 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/27 19:52:00 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/27 20:55:44 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	loop(t_win *window_config)
 	pressed_buttons, window_config);
 	mlx_hook(window_config->win_ptr, 3, 1L << 1,
 	released_buttons, window_config);
+	mlx_loop_hook(window_config->mlx_ptr,
+	draw_screen, window_config);
 	mlx_hook(window_config->win_ptr, 17, 1L << 17,
 	finish_program, window_config);
 	mlx_loop(window_config->mlx_ptr);
