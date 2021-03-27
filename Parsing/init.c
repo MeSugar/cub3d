@@ -6,7 +6,7 @@
 /*   By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:10:35 by gdelta            #+#    #+#             */
-/*   Updated: 2021/03/26 02:03:45 by gdelta           ###   ########.fr       */
+/*   Updated: 2021/03/27 14:42:06 by gdelta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int     texture_init(t_win *window_config)
     window_config->ea_tex = 0;
     window_config->we_tex = 0;
     window_config->sprite_tex = 0;
+     if (!(window_config->tex = ft_calloc(1, sizeof(t_tex))))
+        return (put_error_msg("Error: Malloc error\n"));
     // window_config->no_tex->img_ptr = 0;
     // window_config->so_tex->img_ptr = 0;
     // window_config->ea_tex->img_ptr = 0;
