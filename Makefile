@@ -6,7 +6,7 @@
 #    By: gdelta <gdelta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 20:04:32 by gdelta            #+#    #+#              #
-#    Updated: 2021/03/27 18:25:35 by gdelta           ###   ########.fr        #
+#    Updated: 2021/03/27 20:00:41 by gdelta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ all : $(NAME)
 
 $(NAME) : $(SRCS)
 		@make bonus -C $(LIBFT_PATH)
-		@$(CC) -g -o $(NAME) $(CFLAGS) $(SRCS) -I $(INCLUDES) -I $(LIBFT_PATH) -I $(MINILIB) $(LIBFT) -lmlx -lm -framework OpenGL -framework AppKit
+		@$(CC) -o $(NAME) $(CFLAGS) $(SRCS) -I $(INCLUDES) -I $(LIBFT_PATH) -I $(MINILIB) $(LIBFT) -lmlx -lm -framework OpenGL -framework AppKit
 
 clean :
 		@make -C $(LIBFT_PATH) clean
