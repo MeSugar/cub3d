@@ -8,6 +8,8 @@ It's a graphic design project the objective of which is to create a dynamic view
 
 ## Map
 The program takes as a first argument a scene description file with the .cub extension
+
+Components:
 - The map must be composed of only 6 possible characters: 0 for an empty space, 1 for a wall, and N,S,E or W for the player’s start position and spawning orientation.
 - North texture
 - South texture
