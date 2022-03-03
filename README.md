@@ -4,7 +4,7 @@ This project is inspired by the world-famous Wolfenstein 3D game.
 
 It's a graphic design project the objective of which is to create a dynamic view inside a maze using raycasting method and [miniLibX](https://github.com/42Paris/minilibx-linux).
 
-![image](https://user-images.githubusercontent.com/75207011/156568548-3a586371-00c5-4e76-a7d8-2640e799a75b.png)
+![image](https://user-images.githubusercontent.com/75207011/156620804-93d31a0f-c760-44d3-818b-954f0aab3468.png)
 
 ## Map
 The program takes as a first argument a scene description file with the .cub extension
